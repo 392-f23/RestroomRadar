@@ -1,0 +1,44 @@
+{
+    "results": [
+        {
+            "name":"Starbucks",
+            "address":"45 E State St., Chicago",
+            "vicinity":"0.1 miles",
+            "rating":"4.6",
+            "priceLevel":"Purchase required ($1)",
+            "busyLevel":"Busier than usual"
+        },
+        {
+            "name":"Starbucks",
+            "address":"45 E State St., Chicago",
+            "vicinity":"0.1 miles",
+            "rating":"4.6",
+            "priceLevel":"Purchase required ($1)",
+            "busyLevel":"Busier than usual"
+        },
+        {
+            "name":"Starbucks",
+            "address":"45 E State St., Chicago",
+            "vicinity":"0.1 miles",
+            "rating":"4.6",
+            "priceLevel":"Purchase required ($1)",
+            "busyLevel":"Busier than usual"
+        },
+        {
+            "name":"Starbucks",
+            "address":"45 E State St., Chicago",
+            "vicinity":"0.1 miles",
+            "rating":"4.6",
+            "priceLevel":"Purchase required ($1)",
+            "busyLevel":"Busier than usual"
+        },
+        {
+            "name":"Starbucks",
+            "address":"45 E State St., Chicago",
+            "vicinity":"0.1 miles",
+            "rating":"4.6",
+            "priceLevel":"Purchase required ($1)",
+            "busyLevel":"Busier than usual"
+        }
+    ]
+}

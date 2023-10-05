@@ -6,17 +6,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Banner from "./components/Banner/Banner";
 import BathroomHeader from "./components/BathroomHeader/BathroomHeader";
 import AddressBar from "./components/AddressBar/AddressBar";
+import { results } from './dummyData.json';
 
 const App = () => {
+  console.log(results);
   return (
     <div className="App">
       <Banner />
       <BathroomHeader />
       <AddressBar address={"122 W Jackson Rd Chicago, IL 60604"}/>
       <div className="restroom-cards">
-        <RestroomCard name={"Chipotle"} address={"123 W Jackson Rd"} distance={"372 ft"} busy={"busier than usual"} rating={"5"}/>
-        <RestroomCard name={"Chipotle"} address={"123 W Jackson Rd"} distance={"372 ft"} busy={"busier than usual"} rating={"5"}/>
-        <RestroomCard name={"Chipotle"} address={"123 W Jackson Rd"} distance={"372 ft"} busy={"busier than usual"} rating={"5"}/>
+        {results.map( (result) => <RestroomCard name={result.name} address={result.address} distance={result.vicinity} busy={result.busyLevel} rating={result.rating}/>)}
       </div>
     </div>
   );
