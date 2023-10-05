@@ -7,7 +7,7 @@ import './Banner.css'
 function Banner() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary banner-container">
-      <h1>RestroomRadar</h1>     
+      <h1 className='header'>RestroomRadar</h1>     
     </Navbar>
   );
 }
