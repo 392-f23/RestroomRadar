@@ -1,44 +1,165 @@
 {
     "results": [
         {
-            "name":"Starbucks",
-            "address":"45 E State St., Chicago",
-            "vicinity":"0.1 miles",
-            "rating":"4.6",
-            "priceLevel":"Purchase required ($1)",
-            "busyLevel":"Busier than usual"
+            "name": "Starbucks",
+            "address": "45 E State St., Evanston",
+            "vicinity": "0.1 miles",
+            "rating": "4.6",
+            "priceLevel": "Purchase required ($1)",
+            "busyLevel": "Busier than usual"
         },
         {
-            "name":"Starbucks",
-            "address":"45 E State St., Chicago",
-            "vicinity":"0.1 miles",
-            "rating":"4.6",
-            "priceLevel":"Purchase required ($1)",
-            "busyLevel":"Busier than usual"
+            "name": "Coffee House",
+            "address": "123 Main St., Evanston",
+            "vicinity": "0.2 miles",
+            "rating": "4.2",
+            "priceLevel": "Purchase required ($2)",
+            "busyLevel": "Not Busy"
         },
         {
-            "name":"Starbucks",
-            "address":"45 E State St., Chicago",
-            "vicinity":"0.1 miles",
-            "rating":"4.6",
-            "priceLevel":"Purchase required ($1)",
-            "busyLevel":"Busier than usual"
+            "name": "Espresso Emporium",
+            "address": "789 Elm St., Evanston",
+            "vicinity": "0.3 miles",
+            "rating": "4.8",
+            "priceLevel": "Free",
+            "busyLevel": "Busy"
         },
         {
-            "name":"Starbucks",
-            "address":"45 E State St., Chicago",
-            "vicinity":"0.1 miles",
-            "rating":"4.6",
-            "priceLevel":"Purchase required ($1)",
-            "busyLevel":"Busier than usual"
+            "name": "Café de la Crème",
+            "address": "246 Oak St., Evanston",
+            "vicinity": "0.4 miles",
+            "rating": "4.5",
+            "priceLevel": "Purchase required ($3)",
+            "busyLevel": "Not Busy"
         },
         {
-            "name":"Starbucks",
-            "address":"45 E State St., Chicago",
-            "vicinity":"0.1 miles",
-            "rating":"4.6",
-            "priceLevel":"Purchase required ($1)",
-            "busyLevel":"Busier than usual"
+            "name": "Mocha Magic",
+            "address": "567 Pine St., Evanston",
+            "vicinity": "0.5 miles",
+            "rating": "4.4",
+            "priceLevel": "Free",
+            "busyLevel": "Busier than usual"
+        },
+        {
+            "name": "Java Jolt",
+            "address": "890 Cedar St., Evanston",
+            "vicinity": "0.6 miles",
+            "rating": "4.7",
+            "priceLevel": "Purchase required ($4)",
+            "busyLevel": "Not Busy"
+        },
+        {
+            "name": "Coffee Corner",
+            "address": "432 Birch St., Evanston",
+            "vicinity": "0.7 miles",
+            "rating": "4.3",
+            "priceLevel": "Free",
+            "busyLevel": "Not Busy"
+        },
+        {
+            "name": "Bean Buzz",
+            "address": "654 Spruce St., Evanston",
+            "vicinity": "0.8 miles",
+            "rating": "4.9",
+            "priceLevel": "Purchase required ($5)",
+            "busyLevel": "Busy"
+        },
+        {
+            "name": "Latte Lounge",
+            "address": "987 Willow St., Evanston",
+            "vicinity": "0.9 miles",
+            "rating": "4.2",
+            "priceLevel": "Not Busy",
+            "busyLevel": "Busier than usual"
+        },
+        {
+            "name": "Cappuccino Café",
+            "address": "321 Cedar St., Evanston",
+            "vicinity": "1.0 miles",
+            "rating": "4.6",
+            "priceLevel": "Free",
+            "busyLevel": "Busy"
+        },
+        {
+            "name": "Brewed Bliss",
+            "address": "555 Oak St., Evanston",
+            "vicinity": "1.1 miles",
+            "rating": "4.7",
+            "priceLevel": "Not Busy",
+            "busyLevel": "Not Busy"
+        },
+        {
+            "name": "Perk Up Place",
+            "address": "789 Elm St., Evanston",
+            "vicinity": "1.2 miles",
+            "rating": "4.5",
+            "priceLevel": "Free",
+            "busyLevel": "Busier than usual"
+        },
+        {
+            "name": "Morning Mugs",
+            "address": "234 Birch St., Evanston",
+            "vicinity": "1.3 miles",
+            "rating": "4.8",
+            "priceLevel": "Purchase required ($6)",
+            "busyLevel": "Not Busy"
+        },
+        {
+            "name": "Bean & Brew",
+            "address": "876 Pine St., Evanston",
+            "vicinity": "1.4 miles",
+            "rating": "4.4",
+            "priceLevel": "Not Busy",
+            "busyLevel": "Busy"
+        },
+        {
+            "name": "Espresso Elegance",
+            "address": "345 Spruce St., Evanston",
+            "vicinity": "1.5 miles",
+            "rating": "4.7",
+            "priceLevel": "Free",
+            "busyLevel": "Not Busy"
+        },
+        {
+            "name": "Café Central",
+            "address": "654 Cedar St., Evanston",
+            "vicinity": "1.6 miles",
+            "rating": "4.3",
+            "priceLevel": "Purchase required ($7)",
+            "busyLevel": "Busier than usual"
+        },
+        {
+            "name": "Java Joy",
+            "address": "987 Willow St., Evanston",
+            "vicinity": "1.7 miles",
+            "rating": "4.9",
+            "priceLevel": "Not Busy",
+            "busyLevel": "Not Busy"
+        },
+        {
+            "name": "Mochaccino Magic",
+            "address": "432 Elm St., Evanston",
+            "vicinity": "1.8 miles",
+            "rating": "4.2",
+            "priceLevel": "Free",
+            "busyLevel": "Busy"
+        },
+        {
+            "name": "Coffee Delight",
+            "address": "765 Oak St., Evanston",
+            "vicinity": "1.9 miles",
+            "rating": "4.6",
+            "priceLevel": "Not Busy",
+            "busyLevel": "Busier than usual"
+        },
+        {
+            "name": "Latte Lovers",
+            "address": "234 Birch St., Evanston",
+            "vicinity": "2.0 miles",
+            "rating": "4.8",
+            "priceLevel": "Purchase required ($8)",
+            "busyLevel": "Not Busy"
         }
     ]
+    
 }
