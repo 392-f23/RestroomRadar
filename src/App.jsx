@@ -9,13 +9,18 @@ import AddressBar from "./components/AddressBar/AddressBar";
 import { results } from "./dummyData.json";
 import { Sorter } from "./components/Sorter/Sorter";
 import Stack from "react-bootstrap/Stack";
+import { Filter } from "./components/Filter/Filter";
 
 const App = () => {
-  const [restroomData, setRestroomData] = useState([]);
-  const [selectedSortValue, setSelectedSortValue] = useState("");
+  const [restroomData, setRestroomData] = useState(results);
 
-  const getSortedData = (value) => {
-    setRestroomData(value)
+  const getSortedData = (data) => {
+    setRestroomData(data);
+  };
+
+  const getFilteredData = (data) => {
+    setRestroomData(data);
+    console.log(data);
   };
 
   return (
@@ -23,8 +28,9 @@ const App = () => {
       <Banner />
       <BathroomHeader />
 
-      <Stack direction="horizontal" gap={3} className="justify-content-center">
-        <Sorter data={results} getSortedData={getSortedData} />
+      <Stack direction="horizontal" gap={3} className="justify-content-center my-3">
+        <Sorter data={restroomData} getSortedData={getSortedData} />
+        <Filter data={results} getFilteredData={getFilteredData} />
       </Stack>
 
       <AddressBar address={"122 W Jackson Rd Chicago, IL 60604"} />
