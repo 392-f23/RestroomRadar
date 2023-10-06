@@ -42,6 +42,7 @@ const App = () => {
         {restroomData &&
           restroomData.map((result) => (
             <RestroomCard
+              key={result.id}
               name={result.name}
               address={result.address}
               distance={result.distance}

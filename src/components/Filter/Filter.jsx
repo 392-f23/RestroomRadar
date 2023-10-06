@@ -26,7 +26,7 @@ export const Filter = ({ data, getFilteredData }) => {
 
       <Dropdown.Menu>
         {["none", "Busier than usual", "Not Busy", "Busy"].map((x) => (
-          <Dropdown.Item onClick={() => setSelectedFilterValue(x)}>
+          <Dropdown.Item key={x} onClick={() => setSelectedFilterValue(x)}>
             {x}
           </Dropdown.Item>
         ))}

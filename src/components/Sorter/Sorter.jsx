@@ -26,7 +26,7 @@ export const Sorter = ({ data, getSortedData }) => {
 
       <Dropdown.Menu>
         {["none", "distance", "rating"].map((x) => (
-          <Dropdown.Item onClick={() => setSelectedSortValue(x)}>
+          <Dropdown.Item key={x} onClick={() => setSelectedSortValue(x)}>
             {x}
           </Dropdown.Item>
         ))}

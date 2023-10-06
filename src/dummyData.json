@@ -1,6 +1,7 @@
 {
     "results": [
         {
+          "id": 0, 
           "name": "Morning Mugs",
           "address": "234 Birch St., Evanston",
           "distance": 1.3,
@@ -9,6 +10,7 @@
           "busyLevel": "Not Busy"
         },
         {
+          "id": 1,
           "name": "Latte Lovers",
           "address": "234 Birch St., Evanston",
           "distance": 2.0,
@@ -17,6 +19,7 @@
           "busyLevel": "Not Busy"
         },
         {
+          "id": 2,
           "name": "Perk Up Place",
           "address": "789 Elm St., Evanston",
           "distance": 1.2,
@@ -25,6 +28,7 @@
           "busyLevel": "Busier than usual"
         },
         {
+          "id": 3,
           "name": "Espresso Emporium",
           "address": "789 Elm St., Evanston",
           "distance": 0.3,
@@ -33,6 +37,7 @@
           "busyLevel": "Busy"
         },
         {
+          "id": 4,
           "name": "Café Central",
           "address": "654 Cedar St., Evanston",
           "distance": 1.6,
@@ -41,6 +46,7 @@
           "busyLevel": "Busier than usual"
         },
         {
+          "id": 5,
           "name": "Java Joy",
           "address": "987 Willow St., Evanston",
           "distance": 1.7,
@@ -49,6 +55,7 @@
           "busyLevel": "Not Busy"
         },
         {
+          "id": 6,
           "name": "Java Jolt",
           "address": "890 Cedar St., Evanston",
           "distance": 0.6,
@@ -57,6 +64,7 @@
           "busyLevel": "Not Busy"
         },
         {
+          "id": 7,
           "name": "Espresso Elegance",
           "address": "345 Spruce St., Evanston",
           "distance": 1.5,
@@ -65,6 +73,7 @@
           "busyLevel": "Not Busy"
         },
         {
+          "id": 8,
           "name": "Latte Lounge",
           "address": "987 Willow St., Evanston",
           "distance": 0.9,
@@ -73,6 +82,7 @@
           "busyLevel": "Busier than usual"
         },
         {
+          "id": 9,
           "name": "Brewed Bliss",
           "address": "555 Oak St., Evanston",
           "distance": 1.1,
@@ -81,6 +91,7 @@
           "busyLevel": "Not Busy"
         },
         {
+          "id": 10,
           "name": "Bean & Brew",
           "address": "876 Pine St., Evanston",
           "distance": 1.4,
@@ -89,6 +100,7 @@
           "busyLevel": "Busy"
         },
         {
+          "id": 11,
           "name": "Starbucks",
           "address": "45 E State St., Evanston",
           "distance": 0.1,
@@ -97,6 +109,7 @@
           "busyLevel": "Busier than usual"
         },
         {
+          "id": 12,
           "name": "Café de la Crème",
           "address": "246 Oak St., Evanston",
           "distance": 0.4,
@@ -105,6 +118,7 @@
           "busyLevel": "Not Busy"
         },
         {
+          "id": 13,
           "name": "Bean Buzz",
           "address": "654 Spruce St., Evanston",
           "distance": 0.8,
@@ -113,6 +127,7 @@
           "busyLevel": "Busy"
         },
         {
+          "id": 14,
           "name": "Mochaccino Magic",
           "address": "432 Elm St., Evanston",
           "distance": 1.8,
@@ -121,6 +136,7 @@
           "busyLevel": "Busy"
         },
         {
+          "id": 15,
           "name": "Cappuccino Café",
           "address": "321 Cedar St., Evanston",
           "distance": 1.0,
@@ -129,6 +145,7 @@
           "busyLevel": "Busy"
         },
         {
+          "id": 16,
           "name": "Mocha Magic",
           "address": "567 Pine St., Evanston",
           "distance": 0.5,
@@ -137,6 +154,7 @@
           "busyLevel": "Busier than usual"
         },
         {
+          "id": 17,
           "name": "Coffee House",
           "address": "123 Main St., Evanston",
           "distance": 0.2,
@@ -145,6 +163,7 @@
           "busyLevel": "Not Busy"
         },
         {
+          "id": 18,
           "name": "Coffee Corner",
           "address": "432 Birch St., Evanston",
           "distance": 0.7,
@@ -153,6 +172,7 @@
           "busyLevel": "Not Busy"
         },
         {
+          "id": 19,
           "name": "Coffee Delight",
           "address": "765 Oak St., Evanston",
           "distance": 1.9,
