@@ -20,7 +20,7 @@
             "name": "Espresso Emporium",
             "address": "789 Elm St., Evanston",
             "vicinity": "0.3 miles",
-            "rating": "4.8",
+            "rating": "2.8",
             "priceLevel": "Free",
             "busyLevel": "Busy"
         },
@@ -36,7 +36,7 @@
             "name": "Mocha Magic",
             "address": "567 Pine St., Evanston",
             "vicinity": "0.5 miles",
-            "rating": "4.4",
+            "rating": "3.4",
             "priceLevel": "Free",
             "busyLevel": "Busier than usual"
         },
@@ -52,7 +52,7 @@
             "name": "Coffee Corner",
             "address": "432 Birch St., Evanston",
             "vicinity": "0.7 miles",
-            "rating": "4.3",
+            "rating": "2.3",
             "priceLevel": "Free",
             "busyLevel": "Not Busy"
         },
@@ -68,7 +68,7 @@
             "name": "Latte Lounge",
             "address": "987 Willow St., Evanston",
             "vicinity": "0.9 miles",
-            "rating": "4.2",
+            "rating": "2",
             "priceLevel": "Not Busy",
             "busyLevel": "Busier than usual"
         },
@@ -76,7 +76,7 @@
             "name": "Cappuccino Café",
             "address": "321 Cedar St., Evanston",
             "vicinity": "1.0 miles",
-            "rating": "4.6",
+            "rating": "1",
             "priceLevel": "Free",
             "busyLevel": "Busy"
         },
@@ -116,7 +116,7 @@
             "name": "Espresso Elegance",
             "address": "345 Spruce St., Evanston",
             "vicinity": "1.5 miles",
-            "rating": "4.7",
+            "rating": "2.7",
             "priceLevel": "Free",
             "busyLevel": "Not Busy"
         },
@@ -148,7 +148,7 @@
             "name": "Coffee Delight",
             "address": "765 Oak St., Evanston",
             "vicinity": "1.9 miles",
-            "rating": "4.6",
+            "rating": "3.6",
             "priceLevel": "Not Busy",
             "busyLevel": "Busier than usual"
         },
