@@ -28,7 +28,11 @@ const App = () => {
       <Banner />
       <BathroomHeader />
 
-      <Stack direction="horizontal" gap={3} className="justify-content-center my-3">
+      <Stack
+        direction="horizontal"
+        gap={3}
+        className="justify-content-center my-3"
+      >
         <Sorter data={restroomData} getSortedData={getSortedData} />
         <Filter data={results} getFilteredData={getFilteredData} />
       </Stack>

@@ -6,7 +6,7 @@ export const Filter = ({ data, getFilteredData }) => {
 
   useEffect(() => {
     let filteredResults = [...data];
-    if (selectedFilterValue !== "none") {
+    if (selectedFilterValue !== "none" && selectedFilterValue !== "") {
       filteredResults = filteredResults.filter(
         (x) => x.busyLevel == selectedFilterValue
       );

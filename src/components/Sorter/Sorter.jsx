@@ -6,14 +6,13 @@ export const Sorter = ({ data, getSortedData }) => {
 
   useEffect(() => {
     let sortedResults = [...data];
-    if (selectedSortValue == "rating") {
+    if (selectedSortValue === "rating") {
       sortedResults.sort((a, b) => b[selectedSortValue] - a[selectedSortValue]);
-    } else {
+    } else if (selectedSortValue !== "") {
       sortedResults.sort((a, b) => a[selectedSortValue] - b[selectedSortValue]);
     }
     getSortedData(sortedResults);
   }, [selectedSortValue]);
-  
 
   return (
     <Dropdown>
