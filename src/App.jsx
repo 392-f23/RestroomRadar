@@ -14,19 +14,9 @@ const App = () => {
   const [restroomData, setRestroomData] = useState([]);
   const [selectedSortValue, setSelectedSortValue] = useState("");
 
-  const getSelectedSortValue = (value) => {
-    setSelectedSortValue(value);
+  const getSortedData = (value) => {
+    setRestroomData(value)
   };
-
-  useEffect(() => {
-    let sortedResults = [...results];
-    if (selectedSortValue == "rating") {
-      sortedResults.sort((a, b) => b[selectedSortValue] - a[selectedSortValue]);
-    } else {
-      sortedResults.sort((a, b) => a[selectedSortValue] - b[selectedSortValue]);
-    }
-    setRestroomData(sortedResults);
-  }, [selectedSortValue]);
 
   return (
     <div className="App">
@@ -34,11 +24,7 @@ const App = () => {
       <BathroomHeader />
 
       <Stack direction="horizontal" gap={3} className="justify-content-center">
-        <Sorter
-          sortData={["none", "distance", "rating"]}
-          setSelected={getSelectedSortValue}
-          selected={selectedSortValue}
-        />
+        <Sorter data={results} getSortedData={getSortedData} />
       </Stack>
 
       <AddressBar address={"122 W Jackson Rd Chicago, IL 60604"} />
