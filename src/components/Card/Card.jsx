@@ -46,7 +46,7 @@ function RestroomCard({ result, openModal, setSelected }) {
           {busy}
         </Button>
         <Card.Text>
-          {address} ({distance})
+          {address} ({distance} mi)
         </Card.Text>
         <Card.Text>{pricing}</Card.Text>
         <div className="flex">
