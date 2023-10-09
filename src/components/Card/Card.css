@@ -23,3 +23,7 @@
 .name-link:visited {
     color: brown;
 }
+
+.busy-label {
+    margin: 4px 0px;
+}
