@@ -7,3 +7,19 @@
 .review {
     margin-left: 0.5rem;
 }
+
+.name-link {
+    color: brown;
+}
+
+.name-link:active {
+    color: rgb(54, 15, 15);
+}
+
+.name-link:hover {
+    color: rgb(54, 15, 15);
+}
+
+.name-link:visited {
+    color: brown;
+}
