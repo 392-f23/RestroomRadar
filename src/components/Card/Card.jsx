@@ -3,7 +3,19 @@ import Card from "react-bootstrap/Card";
 import StarRating from "../StarRating/StarRating";
 import "./Card.css";
 
-function RestroomCard({ name, address, busy, rating, pricing, distance }) {
+function RestroomCard({ result, openModal, setSelected }) {
+  const name = result.name;
+  const address = result.address;
+  const distance = result.distance;
+  const busy = result.busyLevel;
+  const rating = result.rating;
+  const pricing = result.priceLevel;
+
+  const showReviews = () => {
+    setSelected(result);
+    openModal();
+  }
+  
   return (
     <Card style={{ width: "18rem", marginBottom: "1rem" }}>
       <Card.Body>
@@ -16,7 +28,7 @@ function RestroomCard({ name, address, busy, rating, pricing, distance }) {
         <Card.Text>{pricing}</Card.Text>
         <div className="flex">
           <StarRating rating={rating} />
-          <Button variant="primary">
+          <Button variant="primary" onClick={showReviews}>
             Reviews
             <svg
               xmlns="http://www.w3.org/2000/svg"

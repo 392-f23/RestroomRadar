@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import { useState } from "react";
 import "./App.css";
 import RestroomCard from "./components/Card/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,12 +6,17 @@ import Banner from "./components/Banner/Banner";
 import BathroomHeader from "./components/BathroomHeader/BathroomHeader";
 import AddressBar from "./components/AddressBar/AddressBar";
 import { results } from "./dummyData.json";
+import { reviews } from './dummyReviews.json';
 import { Sorter } from "./components/Sorter/Sorter";
 import Stack from "react-bootstrap/Stack";
 import { Filter } from "./components/Filter/Filter";
+import { Modal } from "./components/Modal/Modal";
+import { ReviewList } from "./components/ReviewList/ReviewList";
 
 const App = () => {
   const [restroomData, setRestroomData] = useState(results);
+  const [selected, setSelected] = useState();
+  const [open, setOpen] = useState(false);
 
   const getSortedData = (data) => {
     setRestroomData(data);
@@ -20,13 +24,19 @@ const App = () => {
 
   const getFilteredData = (data) => {
     setRestroomData(data);
-    console.log(data);
   };
+
+  const openModal = () => setOpen(true);
+  const closeModal = () => setOpen(false);
 
   return (
     <div className="App">
       <Banner />
       <BathroomHeader />
+
+      <Modal open={open} close={closeModal}>
+        <ReviewList selected={selected} reviews={reviews}/>
+      </Modal>
 
       <Stack
         direction="horizontal"
@@ -42,12 +52,10 @@ const App = () => {
         {restroomData &&
           restroomData.map((result) => (
             <RestroomCard
-              key={result.id}
-              name={result.name}
-              address={result.address}
-              distance={result.distance}
-              busy={result.busyLevel}
-              rating={result.rating}
+              key = {result.id}
+              result={result}
+              openModal={openModal}
+              setSelected={setSelected}
             />
           ))}
       </div>
