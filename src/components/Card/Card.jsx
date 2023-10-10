@@ -7,7 +7,7 @@ function RestroomCard({ result, openModal, setSelected }) {
   const name = result.name;
   const address = result.address;
   const distance = result.distance;
-  const busy = result.busyLevel;
+  const busy = result.operational;
   const rating = result.rating;
   const pricing = result.priceLevel;
 
@@ -46,7 +46,7 @@ function RestroomCard({ result, openModal, setSelected }) {
           {busy}
         </Button>
         <Card.Text>
-          {address} ({distance} mi)
+          {address} ({distance} km)
         </Card.Text>
         <Card.Text>{pricing}</Card.Text>
         <div className="flex">
