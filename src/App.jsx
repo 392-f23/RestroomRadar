@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import RestroomCard from "./components/Card/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,9 +12,12 @@ import Stack from "react-bootstrap/Stack";
 import { Filter } from "./components/Filter/Filter";
 import { Modal } from "./components/Modal/Modal";
 import { ReviewList } from "./components/ReviewList/ReviewList";
+import { getCoordinateLocation, getNearbyRestrooms } from "./utilities/googleApiCalls";
 
 const App = () => {
-  const [restroomData, setRestroomData] = useState(results);
+  const [restroomData, setRestroomData] = useState([]);
+  const [coordinates, setCoordinates] = useState({lat: null,lon: null});
+  const [nearbyPlaces, setNearbyPlaces] = useState([]);
   const [selected, setSelected] = useState();
   const [open, setOpen] = useState(false);
 
@@ -25,6 +28,16 @@ const App = () => {
   const getFilteredData = (data) => {
     setRestroomData(data);
   };
+
+  // using useEffect on startup: https://www.w3schools.com/react/react_useeffect.asp
+  useEffect(() => {
+    getCoordinateLocation('1205 S 4th Street St. Charles',setCoordinates);
+  }, []);
+
+  // using useEffect to set state when coordinates change: https://daveceddia.com/useeffect-hook-examples/
+  useEffect(() => {
+    getNearbyRestrooms(coordinates,setNearbyPlaces,setRestroomData);
+  }, [coordinates]);
 
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
@@ -43,8 +56,8 @@ const App = () => {
         gap={3}
         className="justify-content-center my-3"
       >
-        <Sorter data={restroomData} getSortedData={getSortedData} />
-        <Filter data={results} getFilteredData={getFilteredData} />
+        <Sorter data={nearbyPlaces} getSortedData={getSortedData} />
+        <Filter data={nearbyPlaces} getFilteredData={getFilteredData} />
       </Stack>
 
       <AddressBar address={"122 W Jackson Rd Chicago, IL 60604"} />
