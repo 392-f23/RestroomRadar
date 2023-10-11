@@ -13,6 +13,7 @@ import { Filter } from "./components/Filter/Filter";
 import { Modal } from "./components/Modal/Modal";
 import { ReviewList } from "./components/ReviewList/ReviewList";
 import { getCoordinateLocation, getNearbyRestrooms } from "./utilities/googleApiCalls";
+import { ReviewForm } from "./components/ReviewForm/ReviewForm";
 
 const App = () => {
   const [restroomData, setRestroomData] = useState([]);
@@ -45,7 +46,10 @@ const App = () => {
   return (
     <div className="App">
       <Banner />
-      <BathroomHeader />
+      <ReviewForm/>
+
+
+      {/* <BathroomHeader />
 
       <Modal open={open} close={closeModal}>
         <ReviewList selected={selected} reviews={reviews}/>
@@ -71,7 +75,7 @@ const App = () => {
               setSelected={setSelected}
             />
           ))}
-      </div>
+      </div> */}
     </div>
   );
 };

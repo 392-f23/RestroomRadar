@@ -1,3 +1,4 @@
+import { Button } from 'react-bootstrap';
 import './ReviewList.css';
 
 export const ReviewList = ({selected, reviews}) => {
@@ -15,7 +16,9 @@ export const ReviewList = ({selected, reviews}) => {
                 <p className="reviewer-name">- {review.username}</p>
               </div>
             ))
+            
         }
+        <Button>Leave Review</Button>
       </div>
     );
   
