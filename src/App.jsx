@@ -14,6 +14,7 @@ import { Modal } from "./components/Modal/Modal";
 import { ReviewList } from "./components/ReviewList/ReviewList";
 import { getCoordinateLocation, getNearbyRestrooms } from "./utilities/googleApiCalls";
 import { ReviewForm } from "./components/ReviewForm/ReviewForm";
+import { render } from "react-dom";
 
 const App = () => {
   const [restroomData, setRestroomData] = useState([]);
