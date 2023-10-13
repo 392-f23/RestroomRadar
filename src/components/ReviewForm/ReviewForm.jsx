@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import ReactStars from "react-rating-stars-component";
 import { useAuth, useDbData, useDbUpdate } from "../../utilities/firebase";
 import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 export const ReviewForm = () => {
   let restroom_id = "ChIJ8_fXkagCD4gRerzBDnk3iN0"; //  will come from props
@@ -76,7 +77,9 @@ export const ReviewForm = () => {
         </div>
 
         <Button onClick={onSubmitReview}>Submit</Button>
-        <Button>Cancel</Button>
+        <Link to={"/"}>
+          <Button>Cancel</Button>
+        </Link>
       </Form.Group>
     </Form>
   );
