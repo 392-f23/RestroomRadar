@@ -67,8 +67,9 @@ const PlacesAutocomplete = ({ setCoordinates }) => {
   return (
     <div ref={ref} className="autocomplete-div">
       <input
-        size="35"
+        size="40"
         value={value}
+        type="search"
         onChange={handleInput}
         disabled={!ready}
         placeholder="Enter address"
