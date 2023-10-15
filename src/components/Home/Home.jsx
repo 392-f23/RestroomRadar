@@ -45,10 +45,10 @@ const Home = () => {
     setRestroomData(data);
   };
 
-  // using useEffect on startup: https://www.w3schools.com/react/react_useeffect.asp
-  useEffect(() => {
-    getCoordinateLocation("1205 S 4th Street St. Charles", setCoordinates);
-  }, []);
+  // // using useEffect on startup: https://www.w3schools.com/react/react_useeffect.asp
+  // useEffect(() => {
+  //   getCoordinateLocation("1205 S 4th Street St. Charles", setCoordinates);
+  // }, []);
 
   // using useEffect to set state when coordinates change: https://daveceddia.com/useeffect-hook-examples/
   useEffect(() => {
@@ -99,7 +99,7 @@ const Home = () => {
         </h1>
       </Fab>
 
-      <PlacesAutocomplete />
+      <PlacesAutocomplete setCoordinates={setCoordinates} />
       <div className="restroom-cards">
         {restroomData &&
           restroomData.map((result) => (

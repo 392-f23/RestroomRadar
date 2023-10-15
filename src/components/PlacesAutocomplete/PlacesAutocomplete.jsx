@@ -1,11 +1,13 @@
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
+  getDetails,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import "./PlacesAutocomplete.css";
+import { getCoordinateLocation } from "../../utilities/googleApiCalls";
 
-const PlacesAutocomplete = () => {
+const PlacesAutocomplete = ({ setCoordinates }) => {
   const {
     ready,
     value,
@@ -43,6 +45,7 @@ const PlacesAutocomplete = () => {
         const { lat, lng } = getLatLng(results[0]);
         console.log("📍 Coordinates: ", { lat, lng });
       });
+      console.log("hey!", description);
     };
 
   const renderSuggestions = () =>
@@ -51,6 +54,8 @@ const PlacesAutocomplete = () => {
         place_id,
         structured_formatting: { main_text, secondary_text },
       } = suggestion;
+
+      getCoordinateLocation(suggestion.description, setCoordinates);
 
       return (
         <li key={place_id} onClick={handleSelect(suggestion)}>
