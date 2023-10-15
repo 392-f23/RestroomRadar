@@ -4,75 +4,36 @@ import RestroomCard from "./components/Card/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Banner from "./components/Banner/Banner";
 import BathroomHeader from "./components/BathroomHeader/BathroomHeader";
-import AddressBar from "./components/AddressBar/AddressBar";
 import { results } from "./dummyData.json";
-import { reviews } from './dummyReviews.json';
+import { reviews } from "./dummyReviews.json";
 import { Sorter } from "./components/Sorter/Sorter";
 import Stack from "react-bootstrap/Stack";
 import { Filter } from "./components/Filter/Filter";
 import { Modal } from "./components/Modal/Modal";
 import { ReviewList } from "./components/ReviewList/ReviewList";
-import { getCoordinateLocation, getNearbyRestrooms } from "./utilities/googleApiCalls";
+import {
+  getCoordinateLocation,
+  getNearbyRestrooms,
+} from "./utilities/googleApiCalls";
+import { ReviewForm } from "./components/ReviewForm/ReviewForm";
+import { render } from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./components/Home/Home";
+import PlacesAutocomplete from "./components/PlacesAutocomplete/PlacesAutocomplete";
+import { Signin } from "./components/Signin/Signin";
 
 const App = () => {
-  const [restroomData, setRestroomData] = useState([]);
-  const [coordinates, setCoordinates] = useState({lat: null,lon: null});
-  const [nearbyPlaces, setNearbyPlaces] = useState([]);
-  const [selected, setSelected] = useState();
-  const [open, setOpen] = useState(false);
-
-  const getSortedData = (data) => {
-    setRestroomData(data);
-  };
-
-  const getFilteredData = (data) => {
-    setRestroomData(data);
-  };
-
-  // using useEffect on startup: https://www.w3schools.com/react/react_useeffect.asp
-  useEffect(() => {
-    getCoordinateLocation('1205 S 4th Street St. Charles',setCoordinates);
-  }, []);
-
-  // using useEffect to set state when coordinates change: https://daveceddia.com/useeffect-hook-examples/
-  useEffect(() => {
-    getNearbyRestrooms(coordinates,setNearbyPlaces,setRestroomData);
-  }, [coordinates]);
-
-  const openModal = () => setOpen(true);
-  const closeModal = () => setOpen(false);
-
   return (
-    <div className="App">
+    <BrowserRouter>
       <Banner />
-      <BathroomHeader />
+      <Routes>
 
-      <Modal open={open} close={closeModal}>
-        <ReviewList selected={selected} reviews={reviews}/>
-      </Modal>
 
-      <Stack
-        direction="horizontal"
-        gap={3}
-        className="justify-content-center my-3"
-      >
-        <Sorter data={nearbyPlaces} getSortedData={getSortedData} />
-        <Filter data={nearbyPlaces} getFilteredData={getFilteredData} />
-      </Stack>
-
-      <AddressBar address={"122 W Jackson Rd Chicago, IL 60604"} />
-      <div className="restroom-cards">
-        {restroomData &&
-          restroomData.map((result) => (
-            <RestroomCard
-              key = {result.id}
-              result={result}
-              openModal={openModal}
-              setSelected={setSelected}
-            />
-          ))}
-      </div>
-    </div>
+        <Route path="/" element={<Signin />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/review_form" element={<ReviewForm />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
