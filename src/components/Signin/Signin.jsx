@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { Button, Stack } from "react-bootstrap";
 import { FirebaseSignIn, useAuth, useDbUpdate } from "../../utilities/firebase";
+import { useNavigate } from "react-router-dom";
+
+
 
 export const Signin = () => {
   const user = useAuth();
+  const navigate = useNavigate();
   console.log(user);
 
   const [update, result] = useDbUpdate(`/users/${user ? user.uid : "unknown"}`);
@@ -16,6 +20,9 @@ export const Signin = () => {
         name: user.displayName,
       };
       update(stored_user);
+
+      // redirecting to home
+      navigate("/home")
     }
   }, [user]);
 

@@ -20,13 +20,17 @@ import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import PlacesAutocomplete from "./components/PlacesAutocomplete/PlacesAutocomplete";
+import { Signin } from "./components/Signin/Signin";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Banner />
       <Routes>
-        <Route path="/" element={<Home />} />
+
+
+        <Route path="/" element={<Signin />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/review_form" element={<ReviewForm />} />
       </Routes>
     </BrowserRouter>
