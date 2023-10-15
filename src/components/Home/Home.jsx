@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import RestroomCard from "../Card/Card";
 import BathroomHeader from "../BathroomHeader/BathroomHeader";
-import AddressBar from "../AddressBar/AddressBar";
 import { Sorter } from "../Sorter/Sorter";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { reviews } from "../../dummyReviews.json";
@@ -14,8 +13,9 @@ import {
   getCoordinateLocation,
   getNearbyRestrooms,
 } from "../../utilities/googleApiCalls";
-import Fab from '@mui/material/Fab';
+import Fab from "@mui/material/Fab";
 import { BiMapAlt } from "react-icons/bi";
+import PlacesAutocomplete from "../PlacesAutocomplete/PlacesAutocomplete";
 
 const Home = () => {
   const [restroomData, setRestroomData] = useState([]);
@@ -34,7 +34,7 @@ const Home = () => {
     bottom: "10%",
     flexWrap: "wrap-reverse",
     flexDirection: "row-reverse",
-    backgroundColor: "blue"
+    backgroundColor: "blue",
   };
 
   const getSortedData = (data) => {
@@ -76,14 +76,30 @@ const Home = () => {
       </Stack>
 
       <Modal open={openMap} close={closeMapModal}>
-        <div id="map" style={{width:"auto", height:"550px", position:"relative", overflow:"hidden"}}></div>
+        <div
+          id="map"
+          style={{
+            width: "auto",
+            height: "550px",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        ></div>
       </Modal>
 
-      <Fab onClick={openMapModal} style={fabStyle} sx={Fab.sx} aria-label={Fab.label} background-color="blue">
-        <h1><BiMapAlt color="white"/></h1>
+      <Fab
+        onClick={openMapModal}
+        style={fabStyle}
+        sx={Fab.sx}
+        aria-label={Fab.label}
+        background-color="blue"
+      >
+        <h1>
+          <BiMapAlt color="white" />
+        </h1>
       </Fab>
 
-      <AddressBar address={"122 W Jackson Rd Chicago, IL 60604"} />
+      <PlacesAutocomplete />
       <div className="restroom-cards">
         {restroomData &&
           restroomData.map((result) => (
