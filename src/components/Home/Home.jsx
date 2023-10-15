@@ -14,6 +14,8 @@ import {
   getCoordinateLocation,
   getNearbyRestrooms,
 } from "../../utilities/googleApiCalls";
+import Fab from '@mui/material/Fab';
+import { BiMapAlt } from "react-icons/bi";
 
 const Home = () => {
   const [restroomData, setRestroomData] = useState([]);
@@ -21,6 +23,19 @@ const Home = () => {
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
   const [selected, setSelected] = useState();
   const [open, setOpen] = useState(false);
+  const [openMap, setOpenMap] = useState(false);
+  const openMapModal = () => setOpenMap(true);
+  const closeMapModal = () => setOpenMap(false);
+  // styling floating button: https://stackoverflow.com/questions/65691712/how-to-show-a-floating-action-button-always-in-bottom-of-screen
+  const fabStyle = {
+    position: "fixed",
+    display: "flex",
+    left: "5%",
+    bottom: "10%",
+    flexWrap: "wrap-reverse",
+    flexDirection: "row-reverse",
+    backgroundColor: "blue"
+  };
 
   const getSortedData = (data) => {
     setRestroomData(data);
@@ -59,6 +74,14 @@ const Home = () => {
         <Sorter data={nearbyPlaces} getSortedData={getSortedData} />
         <Filter data={nearbyPlaces} getFilteredData={getFilteredData} />
       </Stack>
+
+      <Modal open={openMap} close={closeMapModal}>
+        <div id="map" style={{width:"auto", height:"550px", position:"relative", overflow:"hidden"}}></div>
+      </Modal>
+
+      <Fab onClick={openMapModal} style={fabStyle} sx={Fab.sx} aria-label={Fab.label} background-color="blue">
+        <h1><BiMapAlt color="white"/></h1>
+      </Fab>
 
       <AddressBar address={"122 W Jackson Rd Chicago, IL 60604"} />
       <div className="restroom-cards">
