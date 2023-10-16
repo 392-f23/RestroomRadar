@@ -8,5 +8,35 @@
 }
 
 .suggestions {
-    width: 400px;
+    list-style: none;
+    border: 1px solid gray;
+    border-top: none;
+    padding: .5rem 0;
+    width: 350px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.addressinput {
+    outline: none;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 20px;
+    width: 350px;
+}
+
+.addressinputfocus {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.addressli {
+    padding:.5rem;
+}
+
+.addressli:hover {
+    background-color: #e8e8e8;
+    cursor: pointer;
 }

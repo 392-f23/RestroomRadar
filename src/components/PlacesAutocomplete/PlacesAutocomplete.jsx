@@ -40,6 +40,8 @@ const PlacesAutocomplete = ({ setCoordinates }) => {
       setValue(description, false);
       clearSuggestions();
 
+      getCoordinateLocation(description, setCoordinates);
+
       // Get latitude and longitude via utility functions
       getGeocode({ address: description }).then((results) => {
         const { lat, lng } = getLatLng(results[0]);
@@ -58,8 +60,8 @@ const PlacesAutocomplete = ({ setCoordinates }) => {
       getCoordinateLocation(suggestion.description, setCoordinates);
 
       return (
-        <li key={place_id} onClick={handleSelect(suggestion)}>
-          <strong>{main_text}</strong> <small>{secondary_text}</small>
+        <li className='addressli' key={place_id} onClick={handleSelect(suggestion)}>
+          <b>{main_text}</b> <small>{secondary_text}</small>
         </li>
       );
     });
@@ -67,19 +69,16 @@ const PlacesAutocomplete = ({ setCoordinates }) => {
   return (
     <div ref={ref} className="autocomplete-div">
       <input
-        size="40"
         value={value}
         type="search"
         onChange={handleInput}
         disabled={!ready}
-        style={{outline: 'none', border: '1px solid black', borderRadius: '10px', padding: '5px'}}
+        className={`addressinput ${status === 'OK' ? 'addressinputfocus' : ''}`}
         placeholder="Enter address"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && (
-        <div className="suggestions">
-          <ul>{renderSuggestions()}</ul>
-        </div>
+        <ul className='suggestions'>{renderSuggestions()}</ul>
       )}
     </div>
   );

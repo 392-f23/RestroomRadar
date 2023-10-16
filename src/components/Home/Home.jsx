@@ -30,8 +30,8 @@ const Home = () => {
   const fabStyle = {
     position: "fixed",
     display: "flex",
-    left: "5%",
-    bottom: "10%",
+    left: "1rem",
+    bottom: "1rem",
     flexWrap: "wrap-reverse",
     flexDirection: "row-reverse",
     backgroundColor: "blue",

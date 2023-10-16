@@ -19,9 +19,9 @@ export const Signin = () => {
   }, [user]);
 
   return (
-    <div className='text-white 100vh' style={{background: 'linear-gradient(#66d9ef, #007bff)', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', height: '90vh'}}>
+    <div className='text-white 100vh' style={{background: 'linear-gradient(#66d9ef, #007bff)', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', height: '91vh'}}>
         <div>
-            <img src='../../../../public/restroomradarlogo.png'></img>
+            <img src='../../../../restroomradarlogo.png'></img>
             <h1 style={{fontWeight: '700', fontSize: '3rem'}}>
                 RestroomRadar
             </h1>

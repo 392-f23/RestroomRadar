@@ -75,11 +75,12 @@ export const ReviewForm = () => {
             value={0}
           />
         </div>
-
-        <Button onClick={onSubmitReview}>Submit</Button>
-        <Link to={"/"}>
-          <Button>Cancel</Button>
-        </Link>
+        <div className="d-flex my-3">
+          <Button onClick={onSubmitReview}>Submit</Button>
+          <Link className='mx-3' to={"/"}>
+            <Button className="btn btn-danger">Cancel</Button>
+          </Link>
+        </div>
       </Form.Group>
     </Form>
   );
