@@ -1,13 +1,8 @@
 import React, { useEffect } from "react";
-import { Button, Stack } from "react-bootstrap";
-import { FirebaseSignIn, useAuth, useDbUpdate } from "../../utilities/firebase";
-import { useNavigate } from "react-router-dom";
-
-
+import { useAuth, useDbUpdate } from "../../utilities/firebase";
 
 export const Signin = () => {
   const user = useAuth();
-  const navigate = useNavigate();
   console.log(user);
 
   const [update, result] = useDbUpdate(`/users/${user ? user.uid : "unknown"}`);
@@ -20,26 +15,20 @@ export const Signin = () => {
         name: user.displayName,
       };
       update(stored_user);
-
-      // redirecting to home
-      navigate("/home")
     }
   }, [user]);
 
   return (
-    <Stack
-      gap={3}
-      className="align-items-center justify-content-center"
-      style={{ height: "100vh" }}
-    >
-      <div
-        style={{ height: 200, width: 200, backgroundColor: "#0000ff" }}
-      ></div>
-      <p>Welcome to</p>
-      <h1>Restroom Radar</h1>
-      <Button onClick={FirebaseSignIn} className="px-5">
-        Sign in with Google
-      </Button>
-    </Stack>
+    <div className='text-white 100vh' style={{background: 'linear-gradient(#66d9ef, #007bff)', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', height: '90vh'}}>
+        <div>
+            <img src='../../../../public/restroomradarlogo.png'></img>
+            <h1 style={{fontWeight: '700', fontSize: '3rem'}}>
+                RestroomRadar
+            </h1>
+            <p style={{fontSize: '1rem'}}>
+                Continue as Guest
+            </p>
+        </div>
+    </div>
   );
 };

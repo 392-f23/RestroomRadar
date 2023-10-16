@@ -20,12 +20,10 @@ function RestroomCard({ result, openModal, setSelected }) {
   };
 
   const buttonVariant = () => {
-    if (busy === "Not Busy") {
-      return "success";
-    } else if (busy === "Busier than usual") {
-      return "warning";
-    } else if (busy === "Busy") {
-      return "danger";
+    if (busy === "OPERATIONAL") {
+      return "btn btn-success";
+    } else if (busy === "CLOSED_TEMPORARILY") {
+      return "btn btn-danger";
     }
   };
 
@@ -33,9 +31,7 @@ function RestroomCard({ result, openModal, setSelected }) {
     <Card style={{ width: "18rem", marginBottom: "1rem" }}>
       <Card.Body>
         <Card.Title>
-          <a className="name-link" href={mapLink} target="_blank">
-            {name}
-          </a>
+          <p>{name}</p>
         </Card.Title>
         <Button
           className="busy-label"
@@ -46,9 +42,11 @@ function RestroomCard({ result, openModal, setSelected }) {
           {busy}
         </Button>
         <Card.Text>
-          {address} ({distance} km)
+          <a className="name-link" href={mapLink} target="_blank">{address}</a>
+          <p>({distance} km)</p>
         </Card.Text>
-        <Card.Text>{pricing}</Card.Text>
+      </Card.Body>
+      <Card.Footer className='bg-white'>
         <div className="flex">
           <StarRating rating={rating} />
           <Button variant="primary" onClick={showReviews}>
@@ -66,7 +64,7 @@ function RestroomCard({ result, openModal, setSelected }) {
             </svg>
           </Button>
         </div>
-      </Card.Body>
+      </Card.Footer>
     </Card>
   );
 }

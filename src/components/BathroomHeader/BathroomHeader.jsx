@@ -3,7 +3,7 @@ import "./BathroomHeader.css";
 function BathroomHeader() {
   return (
     <div className="center mt-3">
-      <h4>Bathrooms Near Me</h4>
+      <h3>Bathrooms Near Me</h3>
     </div>
   );
 }

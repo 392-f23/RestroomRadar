@@ -17,9 +17,9 @@ export const Sorter = ({ data, getSortedData }) => {
   return (
     <Dropdown>
       <Dropdown.Toggle
-        variant="outline-secondary"
+        style={{background: 'linear-gradient(#007bff, #66d9ef)', border: 'none'}}
         id="dropdown-basic"
-        size="sm"
+        size="md"
       >
         Sort by {selectedSortValue == "none" ? "" : selectedSortValue}
       </Dropdown.Toggle>

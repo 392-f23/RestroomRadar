@@ -92,6 +92,8 @@ export const FirebaseSignIn = async () => {
   
 }
 
+export const FirebaseSignOut = () => signOut(auth);
+
 export const useAuth = () => {
     const [user, setUser] = useState();
   
@@ -105,5 +107,5 @@ export const useAuth = () => {
       });
     }, []);
   
-    return user
+    return [user];
   }

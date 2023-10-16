@@ -72,6 +72,7 @@ const PlacesAutocomplete = ({ setCoordinates }) => {
         type="search"
         onChange={handleInput}
         disabled={!ready}
+        style={{outline: 'none', border: '1px solid black', borderRadius: '10px', padding: '5px'}}
         placeholder="Enter address"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}

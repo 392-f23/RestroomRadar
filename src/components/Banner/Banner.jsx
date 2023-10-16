@@ -1,13 +1,25 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { FirebaseSignIn, FirebaseSignOut, useAuth } from '../../utilities/firebase';
 import './Banner.css'
 
-function Banner() {
+const SignInButton = () => (
+  <button className="my-2 mx-4 btn text-white signinbutton" style={{border: '1px solid white', borderRadius: '2rem'}} onClick={FirebaseSignIn}>Sign in</button>
+);
+
+const SignOutButton = () => (
+  <button className="my-2 mx-4 btn text-white" style={{border: '1px solid white', borderRadius: '2rem'}} onClick={FirebaseSignOut}>Sign out</button>
+);
+
+const AuthButton = () => {
+  const [user] = useAuth();
+  return user ? <SignOutButton /> : <SignInButton />;
+};
+
+function Banner({title}) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary banner-container">
-      <h1 className='header'>RestroomRadar</h1>     
+      <h1 className=' mx-4 header'>{title}</h1>
+      <AuthButton />     
     </Navbar>
   );
 }
