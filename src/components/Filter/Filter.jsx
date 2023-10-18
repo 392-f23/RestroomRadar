@@ -21,7 +21,7 @@ export const Filter = ({ data, getFilteredData }) => {
     }
   }
   const options = currentOptions;
-  console.log(options);
+  //console.log(options);
 
   return (
     <Dropdown>

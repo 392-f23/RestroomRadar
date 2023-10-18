@@ -45,9 +45,9 @@ const PlacesAutocomplete = ({ setCoordinates }) => {
       // Get latitude and longitude via utility functions
       getGeocode({ address: description }).then((results) => {
         const { lat, lng } = getLatLng(results[0]);
-        console.log("📍 Coordinates: ", { lat, lng });
+        //console.log("📍 Coordinates: ", { lat, lng });
       });
-      console.log("hey!", description);
+      //console.log("hey!", description);
     };
 
   const renderSuggestions = () =>

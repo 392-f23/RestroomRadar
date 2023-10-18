@@ -98,7 +98,7 @@ export const getNearbyRestrooms = (
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       let nearbyResults = [];
       //console.log("got here too");
-      console.log(results);
+      //console.log(results);
       for (var i = 1; i < results.length; i++) {
         /* let openStatus;
         new google.maps.places.PlacesService(document.createElement("div")).getDetails({
@@ -138,7 +138,7 @@ export const getNearbyRestrooms = (
           operational: results[i].business_status,
         });
       }
-      console.log(nearbyResults);
+      //console.log(nearbyResults);
       setNearbyPlaces(nearbyResults);
       setRestroomData(nearbyResults);
       //console.log(queryCoordinates);
