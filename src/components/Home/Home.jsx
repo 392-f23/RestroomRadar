@@ -30,8 +30,8 @@ const Home = () => {
   const fabStyle = {
     position: "fixed",
     display: "flex",
-    left: "5%",
-    bottom: "10%",
+    left: "1rem",
+    bottom: "1rem",
     flexWrap: "wrap-reverse",
     flexDirection: "row-reverse",
     backgroundColor: "blue",
@@ -92,7 +92,7 @@ const Home = () => {
         style={fabStyle}
         sx={Fab.sx}
         aria-label={Fab.label}
-        background-color="blue"
+        className='fab'
       >
         <h1>
           <BiMapAlt color="white" />

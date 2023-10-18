@@ -1,12 +1,10 @@
 .banner-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    background: linear-gradient(#007BFF, #66D9EF);
 }
 
 .header {
-    background: -webkit-linear-gradient(#007BFF, #66D9EF);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: white;
 }

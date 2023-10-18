@@ -17,9 +17,9 @@ export const Filter = ({ data, getFilteredData }) => {
   return (
     <Dropdown>
       <Dropdown.Toggle
-        variant="outline-secondary"
+        style={{background: 'linear-gradient(#007bff, #66d9ef)', border: 'none'}}
         id="dropdown-basic"
-        size="sm"
+        size="md"
       >
         Filter by {selectedFilterValue == "none" ? "" : selectedFilterValue}
       </Dropdown.Toggle>

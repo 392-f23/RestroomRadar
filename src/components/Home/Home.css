@@ -5,3 +5,6 @@
     flex-direction: column;
   }
   
+.fab {
+  background: linear-gradient(#007bff, #66d9ef);
+}
