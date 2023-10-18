@@ -10,6 +10,7 @@ function RestroomCard({ result, openModal, setSelected }) {
   const busy = result.operational;
   const rating = result.rating;
   const pricing = result.priceLevel;
+  const type = result.types[0];
 
   const mapLink =
     "https://www.google.com/maps/dir/41.9047103,-87.6360605/Starbucks,+1230+W+Scott+St,+Chicago,+IL+60610/@41.9043209,-87.6358348,18.01z/data=!4m9!4m8!1m0!1m5!1m1!1s0x880fd348a269abf1:0x79a6d1743cd7a50f!2m2!1d-87.6347694!2d41.9048091!3e2?entry=ttu";
@@ -26,6 +27,7 @@ function RestroomCard({ result, openModal, setSelected }) {
       return "btn btn-danger";
     }
   };
+  
 
   return (
     <Card style={{ width: "18rem", marginBottom: "1rem" }}>
@@ -39,7 +41,7 @@ function RestroomCard({ result, openModal, setSelected }) {
           size="sm"
           disabled
         >
-          {busy}
+          {type}
         </Button>
         <Card.Text>
           <a className="name-link" href={mapLink} target="_blank">{address}</a>
