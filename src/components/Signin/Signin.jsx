@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAuth, useDbUpdate } from "../../utilities/firebase";
 
-export const Signin = () => {
+export const Signin = ({ cont }) => {
   const user = useAuth();
   console.log(user);
 
@@ -25,7 +25,7 @@ export const Signin = () => {
             <h1 style={{fontWeight: '700', fontSize: '3rem'}}>
                 RestroomRadar
             </h1>
-            <p style={{fontSize: '1rem'}}>
+            <p style={{fontSize: '1rem', cursor: 'pointer'}} onClick={cont}>
                 Continue as Guest
             </p>
         </div>
