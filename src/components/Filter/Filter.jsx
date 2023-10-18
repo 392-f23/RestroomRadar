@@ -8,11 +8,20 @@ export const Filter = ({ data, getFilteredData }) => {
     let filteredResults = [...data];
     if (selectedFilterValue !== "none" && selectedFilterValue !== "") {
       filteredResults = filteredResults.filter(
-        (x) => x.busyLevel == selectedFilterValue
+        (x) => x.types[0] == selectedFilterValue
       );
     }
     getFilteredData(filteredResults);
   }, [selectedFilterValue]);
+
+  let currentOptions = ["none"];
+  for (let i = 0; i < data.length; i++) {
+    if (!(currentOptions.includes(data[i].types[0]))) {
+      currentOptions.push(data[i].types[0]);
+    }
+  }
+  const options = currentOptions;
+  //console.log(options);
 
   return (
     <Dropdown>
@@ -25,7 +34,7 @@ export const Filter = ({ data, getFilteredData }) => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        {["none", "Busier than usual", "Not Busy", "Busy"].map((x) => (
+        {options.map((x) => (
           <Dropdown.Item key={x} onClick={() => setSelectedFilterValue(x)}>
             {x}
           </Dropdown.Item>

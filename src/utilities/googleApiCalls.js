@@ -90,7 +90,7 @@ export const getNearbyRestrooms = (
   var requestNearby = {
     location: currentLocation,
     radius: "1000",
-    type: ["public restrooms"],
+    type: ["public"],
   };
 
   // iterating through places from API request: https://developers.google.com/maps/documentation/javascript/places#find_place_from_query
@@ -100,6 +100,28 @@ export const getNearbyRestrooms = (
       //console.log("got here too");
       //console.log(results);
       for (var i = 1; i < results.length; i++) {
+        /* let openStatus;
+        new google.maps.places.PlacesService(document.createElement("div")).getDetails({
+          placeId: results[i].place_id,
+          fields: ['opening_hours','utc_offset_minutes'],
+          }, function (place, status) {
+            if (status !== 'OK') return; // something went wrong
+            const isOpenAtTime = place.opening_hours.isOpen();
+            //console.log(isOpenAtTime);
+            if (isOpenAtTime) {
+              openStatus = true;
+            } else {
+              openStatus = false;
+            }
+        });
+        console.log(openStatus); */
+        let types = results[i].types;
+        let primary_types = ["bakery","bar","cafe","campground","city_hall","convenience_store","department_store","gas_station","library","restaurant","university"];
+        for (let ii = 0; ii < primary_types.length; ii++ ) {
+          if (results[i].types.includes(primary_types[i])) {
+            types = [primary_types[i]];
+          }
+        }
         nearbyResults.push({
           id: results[i].place_id,
           name: results[i].name,
@@ -111,10 +133,12 @@ export const getNearbyRestrooms = (
             queryCoordinates.lon
           ).toFixed(2),
           rating: results[i].rating,
+          types: types,
           priceLevel: "Purchase required ($6)",
           operational: results[i].business_status,
         });
       }
+      //console.log(nearbyResults);
       setNearbyPlaces(nearbyResults);
       setRestroomData(nearbyResults);
       //console.log(queryCoordinates);
