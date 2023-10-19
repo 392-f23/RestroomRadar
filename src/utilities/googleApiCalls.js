@@ -148,7 +148,7 @@ export const getNearbyRestrooms = (
   });
 };
 
-export const getCurrLocation = () => {
+export const getCurrLocation = (setCoordinates) => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -156,7 +156,8 @@ export const getCurrLocation = () => {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        return pos
+        //console.log(pos);
+        setCoordinates({lat: pos.lat,lon: pos.lng});
       },
       () => {
         console.log('Geolocation Error')
@@ -168,15 +169,15 @@ export const getCurrLocation = () => {
   }
 }
 
-export const getAddressFromLocation = () => {
+export const getAddressFromLocation = (coordinates) => {
   const geocoder = new google.maps.Geocoder();
   geocoder
-    .geocode({ location: getCurrLocation() })
+    .geocode({ location: {lat: parseFloat(coordinates.lat), lng: parseFloat(coordinates.lon)} })
     .then((response) => {
       if (response.results[0]) {
         const address = response.results[0].formatted_address;
         console.log(address)
-        return address
+        return address;
       } else {
         console.log('Reverse geocode error')
       }

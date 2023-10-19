@@ -20,18 +20,20 @@ import { BiMapAlt } from "react-icons/bi";
 import PlacesAutocomplete from "../PlacesAutocomplete/PlacesAutocomplete";
 
 const Home = () => {
-  // var address = null
-  // useEffect(() => {
-  //   address = getAddressFromLocation();
-  // });
   const [restroomData, setRestroomData] = useState([]);
   const [coordinates, setCoordinates] = useState({ lat: null, lon: null });
+  const [address, setAddress] = useState("");
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
   const [selected, setSelected] = useState();
   const [open, setOpen] = useState(false);
   const [openMap, setOpenMap] = useState(false);
   const openMapModal = () => setOpenMap(true);
   const closeMapModal = () => setOpenMap(false);
+
+  //getCurrLocation(setCoordinates);
+  //console.log(coordinates);
+
+
   // styling floating button: https://stackoverflow.com/questions/65691712/how-to-show-a-floating-action-button-always-in-bottom-of-screen
   const fabStyle = {
     position: "fixed",
@@ -52,9 +54,11 @@ const Home = () => {
   };
 
   // // using useEffect on startup: https://www.w3schools.com/react/react_useeffect.asp
-  // useEffect(() => {
-  //   getCoordinateLocation("1205 S 4th Street St. Charles", setCoordinates);
-  // }, []);
+   useEffect(() => {
+     getCurrLocation(setCoordinates);
+     getAddressFromLocation(coordinates,setAddress);
+     getCoordinateLocation(address, setCoordinates);
+  }, []);
 
   // using useEffect to set state when coordinates change: https://daveceddia.com/useeffect-hook-examples/
   useEffect(() => {
