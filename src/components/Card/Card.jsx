@@ -8,12 +8,11 @@ function RestroomCard({ result, openModal, setSelected }) {
   const address = result.address;
   const distance = result.distance;
   const busy = result.operational;
-  const rating = result.rating;
+  const rating = 5;
   const pricing = result.priceLevel;
   const type = result.types[0];
 
-  const mapLink =
-    "https://www.google.com/maps/place/?q=place_id:"+result.id;
+  const mapLink = "https://www.google.com/maps/place/?q=place_id:" + result.id;
 
   const showReviews = () => {
     setSelected(result);
@@ -27,7 +26,6 @@ function RestroomCard({ result, openModal, setSelected }) {
       return "btn btn-danger";
     }
   };
-  
 
   return (
     <Card style={{ width: "18rem", marginBottom: "1rem" }}>
@@ -44,11 +42,13 @@ function RestroomCard({ result, openModal, setSelected }) {
           {type}
         </Button>
         <Card.Text>
-          <a className="name-link" href={mapLink} target="_blank">{address}</a>
+          <a className="name-link" href={mapLink} target="_blank">
+            {address}
+          </a>
           <p>({distance} km)</p>
         </Card.Text>
       </Card.Body>
-      <Card.Footer className='bg-white'>
+      <Card.Footer className="bg-white">
         <div className="flex">
           <StarRating rating={rating} />
           <Button variant="primary" onClick={showReviews}>

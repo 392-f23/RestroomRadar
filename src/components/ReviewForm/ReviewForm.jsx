@@ -4,20 +4,24 @@ import Form from "react-bootstrap/Form";
 import ReactStars from "react-rating-stars-component";
 import { useAuth, useDbData, useDbUpdate } from "../../utilities/firebase";
 import { v4 as uuidv4 } from "uuid";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { getRating } from "../../utilities/firebase";
 
 export const ReviewForm = ({ showForm }) => {
   let restroom_id = "ChIJ8_fXkagCD4gRerzBDnk3iN0"; //  will come from props
+
+  // const { restroomId } = useParams();
 
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   const [showAlert, setShowAlert] = useState(false);
 
   const user = useAuth();
-  const [updateRestrooms, result1] = useDbUpdate(`/restrooms/${restroom_id}/`);
-  const [updateReviews, result2] = useDbUpdate(`/reviews/${restroom_id}/`);
+  const [updateRestrooms, result1] = useDbUpdate(`/restrooms/${restroomId}/`);
+  const [updateReviews, result2] = useDbUpdate(`/reviews/${restroomId}/`);
   const [restroomReviews, error] = useDbData(
-    `/restrooms/${restroom_id}/reviews`
+    `/restrooms/${restroomId}/reviews`
   );
 
   const ratingChanged = (newRating) => {
@@ -25,16 +29,17 @@ export const ReviewForm = ({ showForm }) => {
   };
 
   const onSubmitReview = () => {
+    const uuid = uuidv4();
+
     if (review) {
       let reviewObj = {
-        id: uuidv4(),
         review: review,
         rating: rating,
-        user_id: user.uid,
+        user_id: user[0].uid,
       };
-      updateReviews({ [reviewObj.id]: reviewObj });
+      updateReviews({ [uuid]: reviewObj });
       const currentRestroomReviews = restroomReviews || [];
-      currentRestroomReviews.push(reviewObj.id);
+      currentRestroomReviews.push(uuid);
       updateRestrooms({ reviews: currentRestroomReviews });
 
       setReview("");
@@ -78,8 +83,12 @@ export const ReviewForm = ({ showForm }) => {
         </div>
         <div className="d-flex my-3">
           <Button onClick={onSubmitReview}>Submit</Button>
+<<<<<<< HEAD
           <Button className="btn mx-3 btn-danger" onClick={showForm}>Cancel</Button>
           {/*<Link className='mx-3' to={"/"}>
+=======
+          <Link className="mx-3" to={"/"}>
+>>>>>>> 2b7cb74 (change restroomId val in ReviewForm.jsx from hardcoded value to location id from google api)
             <Button className="btn btn-danger">Cancel</Button>
           </Link>*/}
         </div>
