@@ -18,16 +18,18 @@ import {
 import Fab from "@mui/material/Fab";
 import { BiMapAlt } from "react-icons/bi";
 import PlacesAutocomplete from "../PlacesAutocomplete/PlacesAutocomplete";
+import { Hourglass } from 'react-loader-spinner';
 
 const Home = () => {
   const [restroomData, setRestroomData] = useState([]);
-  const [coordinates, setCoordinates] = useState({ lat: 37.3861, lon: 122.0839 });
+  const [coordinates, setCoordinates] = useState({ lat: 27.98, lon: 86.93 });
   const [address, setAddress] = useState("");
   const [mySimpleAddress, setMySimpleAddress] = useState([]);
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
   const [selected, setSelected] = useState();
   const [open, setOpen] = useState(false);
   const [openMap, setOpenMap] = useState(false);
+  const [isLocLoad, setIsLocLoad] = useState(true);
   const openMapModal = () => setOpenMap(true);
   const closeMapModal = () => setOpenMap(false);
 
@@ -65,6 +67,9 @@ const Home = () => {
   // using useEffect to set state when coordinates change: https://daveceddia.com/useeffect-hook-examples/
   useEffect(() => {
     getNearbyRestrooms(coordinates, setNearbyPlaces, setRestroomData, address, setMySimpleAddress, coordinates, setAddress);
+    if (coordinates.lat != 27.98 && coordinates.lon != 86.93) {
+      setIsLocLoad(false);
+    }
   }, [coordinates]);
 
   useEffect(() => {
@@ -116,9 +121,12 @@ const Home = () => {
         </h1>
       </Fab>
 
-      <PlacesAutocomplete setCoordinates={setCoordinates} simpleAddress={mySimpleAddress} />
-      <div className="restroom-cards">
-        {restroomData &&
+      <PlacesAutocomplete setCoordinates={setCoordinates} simpleAddress={mySimpleAddress} isLoaded={isLocLoad}/>
+      <div className="center">
+        {isLocLoad
+        ? <div><div>Loading current location...</div><Hourglass type="Circles" color="#00BFFF" height={80} width={80}/></div>
+        : <div className="restroom-cards">
+          {restroomData &&
           restroomData.map((result) => (
             <RestroomCard
               key={result.id}
@@ -128,6 +136,9 @@ const Home = () => {
             />
           ))}
       </div>
+      }
+      </div>
+      
     </div>
   );
 };
