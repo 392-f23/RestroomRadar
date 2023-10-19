@@ -92,7 +92,7 @@ const Home = () => {
         style={fabStyle}
         sx={Fab.sx}
         aria-label={Fab.label}
-        className='fab'
+        className="fab"
       >
         <h1>
           <BiMapAlt color="white" />

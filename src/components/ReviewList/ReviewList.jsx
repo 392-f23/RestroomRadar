@@ -9,7 +9,7 @@ export const ReviewList = ({ selected, reviews }) => {
     <div className="reviews-div">
       <h2>{selected && selected.name} Restroom Reviews</h2>
       {selectedReview == null ? (
-        <p>Select a store to see reviews</p>
+        <p>No reviews for this bathroom. Feel free to leave one!</p>
       ) : (
         selectedReview.map((review, index) => (
           <div key={index} className="review-entry">
@@ -18,7 +18,7 @@ export const ReviewList = ({ selected, reviews }) => {
           </div>
         ))
       )}
-      <Link to={`/review_form`}>
+      <Link to={`/review_form/${selected ? selected.id : ""}`}>
         <Button>Leave Review</Button>
       </Link>
     </div>

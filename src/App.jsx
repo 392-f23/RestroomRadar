@@ -23,10 +23,13 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Banner title={user || user2 ? 'RestroomRadar' : ''}/>
+      <Banner title={user || user2 ? "RestroomRadar" : ""} />
       <Routes>
-        <Route path='/' element={user || user2 ? <Home /> : <Signin cont={continueAsGuest} />} />
-        <Route path="/review_form" element={<ReviewForm />} />
+        <Route
+          path="/"
+          element={user || user2 ? <Home /> : <Signin cont={continueAsGuest} />}
+        />
+        <Route path="/review_form/:restroomId" element={<ReviewForm />} />
       </Routes>
     </BrowserRouter>
   );
