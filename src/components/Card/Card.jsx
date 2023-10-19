@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import StarRating from "../StarRating/StarRating";
 import "./Card.css";
-import { getRating } from "../../utilities/firebase";
+import { getRating, getReviewCount } from "../../utilities/firebase";
 
 function RestroomCard({ result, openModal, setSelected }) {
   const name = result.name;
@@ -10,7 +10,7 @@ function RestroomCard({ result, openModal, setSelected }) {
   const distance = result.distance;
   const busy = result.operational;
   const rating = getRating(result.id);
-  const pricing = result.priceLevel;
+  const reviewCount = getReviewCount(result.id);
   const type = result.types[0];
 
   const mapLink = "https://www.google.com/maps/place/?q=place_id:" + result.id;
@@ -52,7 +52,7 @@ function RestroomCard({ result, openModal, setSelected }) {
       <Card.Footer className="bg-white">
         <div className="flex">
           {rating !== 0 ? (
-            <StarRating rating={rating} />
+            <StarRating rating={rating} reviewCount={reviewCount} />
           ) : (
             "No reviews currently."
           )}
