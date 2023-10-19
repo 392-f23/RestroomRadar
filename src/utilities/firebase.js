@@ -135,5 +135,13 @@ export const getRating = (restroomId) => {
     return 0;
   }
 
-  console.log("mom", restroomReviews);
+  let ratingSum = 0;
+  let reviewCount = 0;
+  for (const reviewId in restroomReviews) {
+    const review = restroomReviews[reviewId];
+    ratingSum = ratingSum + review.rating;
+    reviewCount = reviewCount + 1;
+  }
+
+  return ratingSum / reviewCount;
 };
