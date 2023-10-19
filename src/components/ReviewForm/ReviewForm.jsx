@@ -83,12 +83,10 @@ export const ReviewForm = ({ showForm }) => {
         </div>
         <div className="d-flex my-3">
           <Button onClick={onSubmitReview}>Submit</Button>
-<<<<<<< HEAD
-          <Button className="btn mx-3 btn-danger" onClick={showForm}>Cancel</Button>
+          <Button className="btn mx-3 btn-danger" onClick={showForm}>
+            Cancel
+          </Button>
           {/*<Link className='mx-3' to={"/"}>
-=======
-          <Link className="mx-3" to={"/"}>
->>>>>>> 2b7cb74 (change restroomId val in ReviewForm.jsx from hardcoded value to location id from google api)
             <Button className="btn btn-danger">Cancel</Button>
           </Link>*/}
         </div>
