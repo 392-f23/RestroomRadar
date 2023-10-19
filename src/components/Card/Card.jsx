@@ -24,7 +24,7 @@ function RestroomCard({ result, openModal, setSelected }) {
     if (busy === "OPERATIONAL") {
       return "btn btn-success";
     } else if (busy === "CLOSED_TEMPORARILY") {
-      return "btn btn-danger";
+      return "btn btn-success";
     }
   };
   
