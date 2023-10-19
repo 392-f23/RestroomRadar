@@ -147,3 +147,39 @@ export const getNearbyRestrooms = (
     }
   });
 };
+
+export const getCurrLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        return pos
+      },
+      () => {
+        console.log('Geolocation Error')
+      },
+    );
+  } else {
+    // Browser doesn't support Geolocation
+    console.log('Geolocation Error')
+  }
+}
+
+export const getAddressFromLocation = () => {
+  const geocoder = new google.maps.Geocoder();
+  geocoder
+    .geocode({ location: getCurrLocation() })
+    .then((response) => {
+      if (response.results[0]) {
+        const address = response.results[0].formatted_address;
+        console.log(address)
+        return address
+      } else {
+        console.log('Reverse geocode error')
+      }
+    })
+    .catch((e) => window.alert("Geocoder failed due to: " + e));
+}

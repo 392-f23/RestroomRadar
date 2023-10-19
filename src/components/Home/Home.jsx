@@ -11,6 +11,8 @@ import { ReviewList } from "../ReviewList/ReviewList";
 import { Modal } from "../Modal/Modal";
 import {
   getCoordinateLocation,
+  getCurrLocation,
+  getAddressFromLocation,
   getNearbyRestrooms,
 } from "../../utilities/googleApiCalls";
 import Fab from "@mui/material/Fab";
@@ -18,6 +20,10 @@ import { BiMapAlt } from "react-icons/bi";
 import PlacesAutocomplete from "../PlacesAutocomplete/PlacesAutocomplete";
 
 const Home = () => {
+  // var address = null
+  // useEffect(() => {
+  //   address = getAddressFromLocation();
+  // });
   const [restroomData, setRestroomData] = useState([]);
   const [coordinates, setCoordinates] = useState({ lat: null, lon: null });
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
