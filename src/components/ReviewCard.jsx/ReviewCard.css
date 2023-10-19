@@ -1,0 +1,15 @@
+.review_username{
+    font-size: 12px;
+    font-weight: bold
+}
+
+.review_pic{
+    border-radius: 5px
+}
+
+.photo_placeholder{
+    height:50px;
+    width: 50px;
+    background-color: gray;
+    border-radius: 5px
+}
