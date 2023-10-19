@@ -58,6 +58,13 @@ const Home = () => {
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
 
+  // const insertRestroomIntoDatabase = (restroomData) => {
+  //   for (const restroom of restroomData) {
+  //     // console.log("asdfsdfs", restroom);
+  //   }
+  // };
+
+  // insertRestroomIntoDatabase(restroomData);
 
   return (
     <div>
