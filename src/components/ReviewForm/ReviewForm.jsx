@@ -6,7 +6,7 @@ import { useAuth, useDbData, useDbUpdate } from "../../utilities/firebase";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
 
-export const ReviewForm = () => {
+export const ReviewForm = ({ showForm }) => {
   let restroom_id = "ChIJ8_fXkagCD4gRerzBDnk3iN0"; //  will come from props
 
   const [review, setReview] = useState("");
@@ -40,6 +40,7 @@ export const ReviewForm = () => {
       setReview("");
       setRating(0);
       setShowAlert(true);
+      showForm();
     }
   };
 
@@ -77,9 +78,10 @@ export const ReviewForm = () => {
         </div>
         <div className="d-flex my-3">
           <Button onClick={onSubmitReview}>Submit</Button>
-          <Link className='mx-3' to={"/"}>
+          <Button className="btn mx-3 btn-danger" onClick={showForm}>Cancel</Button>
+          {/*<Link className='mx-3' to={"/"}>
             <Button className="btn btn-danger">Cancel</Button>
-          </Link>
+          </Link>*/}
         </div>
       </Form.Group>
     </Form>

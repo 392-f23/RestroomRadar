@@ -22,13 +22,12 @@ const App = () => {
   };
 
   return (
-    <BrowserRouter>
+    <div>
       <Banner title={user || user2 ? 'RestroomRadar' : ''}/>
-      <Routes>
-        <Route path='/' element={user || user2 ? <Home /> : <Signin cont={continueAsGuest} />} />
-        <Route path="/review_form" element={<ReviewForm />} />
-      </Routes>
-    </BrowserRouter>
+      {user || user2 
+      ? <Home />
+      : <Signin cont={continueAsGuest} />}
+    </div>
   );
 };
 
