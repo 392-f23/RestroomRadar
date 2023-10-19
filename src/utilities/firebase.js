@@ -136,12 +136,18 @@ export const getRating = (restroomId) => {
   }
 
   let ratingSum = 0;
-  let reviewCount = 0;
   for (const reviewId in restroomReviews) {
     const review = restroomReviews[reviewId];
     ratingSum = ratingSum + review.rating;
-    reviewCount = reviewCount + 1;
   }
 
-  return ratingSum / reviewCount;
+  return ratingSum / Object.entries(restroomReviews).length;
+};
+
+export const getReviewCount = (restroomId) => {
+  const [restroomReviews, error] = useDbData(`/reviews/${restroomId}`);
+  if (!restroomReviews) {
+    return 0;
+  }
+  return Object.entries(restroomReviews).length;
 };
