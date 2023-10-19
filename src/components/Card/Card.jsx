@@ -2,18 +2,18 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import StarRating from "../StarRating/StarRating";
 import "./Card.css";
+import { getRating, getReviewCount } from "../../utilities/firebase";
 
 function RestroomCard({ result, openModal, setSelected }) {
   const name = result.name;
   const address = result.address;
   const distance = result.distance;
   const busy = result.operational;
-  const rating = result.rating;
-  const pricing = result.priceLevel;
+  const rating = getRating(result.id);
+  const reviewCount = getReviewCount(result.id);
   const type = result.types[0];
 
-  const mapLink =
-    "https://www.google.com/maps/place/?q=place_id:"+result.id;
+  const mapLink = "https://www.google.com/maps/place/?q=place_id:" + result.id;
 
   const showReviews = () => {
     setSelected(result);
@@ -27,7 +27,6 @@ function RestroomCard({ result, openModal, setSelected }) {
       return "btn btn-danger";
     }
   };
-  
 
   return (
     <Card style={{ width: "18rem", marginBottom: "1rem" }}>
@@ -44,13 +43,19 @@ function RestroomCard({ result, openModal, setSelected }) {
           {type}
         </Button>
         <Card.Text>
-          <a className="name-link" href={mapLink} target="_blank">{address}</a>
+          <a className="name-link" href={mapLink} target="_blank">
+            {address}
+          </a>
           <p>({distance} km)</p>
         </Card.Text>
       </Card.Body>
-      <Card.Footer className='bg-white'>
+      <Card.Footer className="bg-white">
         <div className="flex">
-          <StarRating rating={rating} />
+          {rating !== 0 ? (
+            <StarRating rating={rating} reviewCount={reviewCount} />
+          ) : (
+            "No reviews."
+          )}
           <Button variant="primary" onClick={showReviews}>
             Reviews
             <svg

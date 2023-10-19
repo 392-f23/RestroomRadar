@@ -58,12 +58,20 @@ const Home = () => {
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
 
+  // const insertRestroomIntoDatabase = (restroomData) => {
+  //   for (const restroom of restroomData) {
+  //     // console.log("asdfsdfs", restroom);
+  //   }
+  // };
+
+  // insertRestroomIntoDatabase(restroomData);
+
   return (
     <div>
       <BathroomHeader />
 
       <Modal open={open} close={closeModal}>
-        <ReviewList selected={selected} reviews={reviews} />
+        <ReviewList selected={selected} />
       </Modal>
 
       <Stack
@@ -92,7 +100,7 @@ const Home = () => {
         style={fabStyle}
         sx={Fab.sx}
         aria-label={Fab.label}
-        className='fab'
+        className="fab"
       >
         <h1>
           <BiMapAlt color="white" />

@@ -1,4 +1,4 @@
-function StarRating({ rating }) {
+function StarRating({ rating, reviewCount }) {
   const stars = [];
 
   for (let i = 1; i <= 5; i++) {
@@ -54,7 +54,11 @@ function StarRating({ rating }) {
     }
   }
 
-  return <div>{stars}</div>;
+  return (
+    <div>
+      {stars} {reviewCount ? `(${reviewCount})` : ""}
+    </div>
+  );
 }
 
 export default StarRating;
