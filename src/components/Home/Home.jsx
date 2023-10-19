@@ -71,7 +71,7 @@ const Home = () => {
       <BathroomHeader />
 
       <Modal open={open} close={closeModal}>
-        <ReviewList selected={selected} reviews={reviews} />
+        <ReviewList selected={selected} />
       </Modal>
 
       <Stack

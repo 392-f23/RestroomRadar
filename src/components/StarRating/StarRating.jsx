@@ -56,7 +56,7 @@ function StarRating({ rating, reviewCount }) {
 
   return (
     <div>
-      {stars} ({reviewCount})
+      {stars} {reviewCount ? `(${reviewCount})` : ""}
     </div>
   );
 }

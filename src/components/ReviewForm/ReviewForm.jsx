@@ -8,11 +8,7 @@ import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getRating } from "../../utilities/firebase";
 
-export const ReviewForm = ({ showForm }) => {
-  let restroom_id = "ChIJ8_fXkagCD4gRerzBDnk3iN0"; //  will come from props
-
-  // const { restroomId } = useParams();
-
+export const ReviewForm = ({ showForm, restroomId }) => {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   const [showAlert, setShowAlert] = useState(false);

@@ -54,7 +54,7 @@ function RestroomCard({ result, openModal, setSelected }) {
           {rating !== 0 ? (
             <StarRating rating={rating} reviewCount={reviewCount} />
           ) : (
-            "No reviews currently."
+            "No reviews."
           )}
           <Button variant="primary" onClick={showReviews}>
             Reviews
