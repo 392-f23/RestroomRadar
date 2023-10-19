@@ -7,7 +7,7 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import "./PlacesAutocomplete.css";
 import { getCoordinateLocation } from "../../utilities/googleApiCalls";
 
-const PlacesAutocomplete = ({ setCoordinates }) => {
+const PlacesAutocomplete = ({ setCoordinates, simpleAddress }) => {
   const {
     ready,
     value,
@@ -74,7 +74,7 @@ const PlacesAutocomplete = ({ setCoordinates }) => {
         onChange={handleInput}
         disabled={!ready}
         className={`addressinput ${status === 'OK' ? 'addressinputfocus' : ''}`}
-        placeholder="Enter address"
+        placeholder={"at " + simpleAddress[0]+","+simpleAddress[1] + "..."}
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && (

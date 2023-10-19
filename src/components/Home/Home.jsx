@@ -21,8 +21,9 @@ import PlacesAutocomplete from "../PlacesAutocomplete/PlacesAutocomplete";
 
 const Home = () => {
   const [restroomData, setRestroomData] = useState([]);
-  const [coordinates, setCoordinates] = useState({ lat: null, lon: null });
+  const [coordinates, setCoordinates] = useState({ lat: 37.3861, lon: 122.0839 });
   const [address, setAddress] = useState("");
+  const [mySimpleAddress, setMySimpleAddress] = useState([]);
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
   const [selected, setSelected] = useState();
   const [open, setOpen] = useState(false);
@@ -56,17 +57,23 @@ const Home = () => {
   // // using useEffect on startup: https://www.w3schools.com/react/react_useeffect.asp
    useEffect(() => {
      getCurrLocation(setCoordinates);
-     getAddressFromLocation(coordinates,setAddress);
+     getAddressFromLocation(coordinates, setAddress);
      getCoordinateLocation(address, setCoordinates);
+     //console.log(address);
   }, []);
 
   // using useEffect to set state when coordinates change: https://daveceddia.com/useeffect-hook-examples/
   useEffect(() => {
-    getNearbyRestrooms(coordinates, setNearbyPlaces, setRestroomData);
+    getNearbyRestrooms(coordinates, setNearbyPlaces, setRestroomData, address, setMySimpleAddress, coordinates, setAddress);
   }, [coordinates]);
+
+  useEffect(() => {
+    setMySimpleAddress(address.split(","));
+  }, [address]);
 
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
+  
 
   return (
     <div>
@@ -109,7 +116,7 @@ const Home = () => {
         </h1>
       </Fab>
 
-      <PlacesAutocomplete setCoordinates={setCoordinates} />
+      <PlacesAutocomplete setCoordinates={setCoordinates} simpleAddress={mySimpleAddress} />
       <div className="restroom-cards">
         {restroomData &&
           restroomData.map((result) => (
