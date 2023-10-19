@@ -122,9 +122,9 @@ const Home = () => {
       </Fab>
 
       <PlacesAutocomplete setCoordinates={setCoordinates} simpleAddress={mySimpleAddress} isLoaded={isLocLoad}/>
-      <div className="center">
+      <div>
         {isLocLoad
-        ? <div><div>Loading current location...</div><Hourglass type="Circles" color="#00BFFF" height={80} width={80}/></div>
+        ? <div className="center"><Hourglass type="Circles" color="#00BFFF" height={80} width={80}/><div>Loading closest restrooms...</div></div>
         : <div className="restroom-cards">
           {restroomData &&
           restroomData.map((result) => (
