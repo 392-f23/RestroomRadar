@@ -22,7 +22,7 @@ import { Hourglass } from 'react-loader-spinner';
 
 const Home = () => {
   const [restroomData, setRestroomData] = useState([]);
-  const [coordinates, setCoordinates] = useState({ lat: 27.98, lon: 86.93 });
+  const [coordinates, setCoordinates] = useState({ lat: 27.65, lon: 109.21 });
   const [address, setAddress] = useState("");
   const [mySimpleAddress, setMySimpleAddress] = useState([]);
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
@@ -67,7 +67,7 @@ const Home = () => {
   // using useEffect to set state when coordinates change: https://daveceddia.com/useeffect-hook-examples/
   useEffect(() => {
     getNearbyRestrooms(coordinates, setNearbyPlaces, setRestroomData, address, setMySimpleAddress, coordinates, setAddress);
-    if (coordinates.lat != 27.98 && coordinates.lon != 86.93) {
+    if (coordinates.lat != 27.65 && coordinates.lon != 109.21) {
       setIsLocLoad(false);
     }
   }, [coordinates]);
