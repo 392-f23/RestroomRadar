@@ -11,21 +11,32 @@ import { ReviewList } from "../ReviewList/ReviewList";
 import { Modal } from "../Modal/Modal";
 import {
   getCoordinateLocation,
+  getCurrLocation,
+  getAddressFromLocation,
   getNearbyRestrooms,
 } from "../../utilities/googleApiCalls";
 import Fab from "@mui/material/Fab";
 import { BiMapAlt } from "react-icons/bi";
 import PlacesAutocomplete from "../PlacesAutocomplete/PlacesAutocomplete";
+import { Hourglass } from 'react-loader-spinner';
 
 const Home = () => {
   const [restroomData, setRestroomData] = useState([]);
-  const [coordinates, setCoordinates] = useState({ lat: null, lon: null });
+  const [coordinates, setCoordinates] = useState({ lat: 37.3861, lon: 122.0839 });
+  const [address, setAddress] = useState("");
+  const [mySimpleAddress, setMySimpleAddress] = useState([]);
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
   const [selected, setSelected] = useState();
   const [open, setOpen] = useState(false);
   const [openMap, setOpenMap] = useState(false);
+  const [isLocLoad, setIsLocLoad] = useState(true);
   const openMapModal = () => setOpenMap(true);
   const closeMapModal = () => setOpenMap(false);
+
+  //getCurrLocation(setCoordinates);
+  //console.log(coordinates);
+
+
   // styling floating button: https://stackoverflow.com/questions/65691712/how-to-show-a-floating-action-button-always-in-bottom-of-screen
   const fabStyle = {
     position: "fixed",
@@ -46,17 +57,28 @@ const Home = () => {
   };
 
   // // using useEffect on startup: https://www.w3schools.com/react/react_useeffect.asp
-  // useEffect(() => {
-  //   getCoordinateLocation("1205 S 4th Street St. Charles", setCoordinates);
-  // }, []);
+   useEffect(() => {
+     getCurrLocation(setCoordinates);
+     getAddressFromLocation(coordinates, setAddress);
+     getCoordinateLocation(address, setCoordinates);
+     //console.log(address);
+  }, []);
 
   // using useEffect to set state when coordinates change: https://daveceddia.com/useeffect-hook-examples/
   useEffect(() => {
-    getNearbyRestrooms(coordinates, setNearbyPlaces, setRestroomData);
+    getNearbyRestrooms(coordinates, setNearbyPlaces, setRestroomData, address, setMySimpleAddress, coordinates, setAddress);
+    if (coordinates.lat != 37.3861 && coordinates.lon != 122.0839) {
+      setIsLocLoad(false);
+    }
   }, [coordinates]);
+
+  useEffect(() => {
+    setMySimpleAddress(address.split(","));
+  }, [address]);
 
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
+  
 
   // const insertRestroomIntoDatabase = (restroomData) => {
   //   for (const restroom of restroomData) {
@@ -107,9 +129,12 @@ const Home = () => {
         </h1>
       </Fab>
 
-      <PlacesAutocomplete setCoordinates={setCoordinates} />
-      <div className="restroom-cards">
-        {restroomData &&
+      <PlacesAutocomplete setCoordinates={setCoordinates} simpleAddress={mySimpleAddress} isLoaded={isLocLoad}/>
+      <div>
+        {isLocLoad
+        ? <div className="center"><Hourglass type="Circles" color="#00BFFF" height={80} width={80}/><div>Loading closest restrooms...</div></div>
+        : <div className="restroom-cards">
+          {restroomData &&
           restroomData.map((result) => (
             <RestroomCard
               key={result.id}
@@ -119,6 +144,9 @@ const Home = () => {
             />
           ))}
       </div>
+      }
+      </div>
+      
     </div>
   );
 };

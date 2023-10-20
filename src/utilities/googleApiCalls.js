@@ -76,7 +76,12 @@ export const getCoordinateLocation = (queryLocation, setCoordinates) => {
 export const getNearbyRestrooms = (
   queryCoordinates,
   setNearbyPlaces,
-  setRestroomData
+  setRestroomData,
+  address,
+  setSimpleAddress,
+  coordinates,
+  setAddress,
+  
 ) => {
   //console.log(queryCoordinates);
 
@@ -141,9 +146,48 @@ export const getNearbyRestrooms = (
       //console.log(nearbyResults);
       setNearbyPlaces(nearbyResults);
       setRestroomData(nearbyResults);
+      getAddressFromLocation(coordinates,setAddress);
+      setSimpleAddress(address.split(","));
       //console.log(queryCoordinates);
       //console.log(requestNearby);
       window.initMap = initMap(queryCoordinates, requestNearby);
     }
   });
 };
+
+export const getCurrLocation = (setCoordinates) => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        //console.log(pos);
+        setCoordinates({lat: pos.lat,lon: pos.lng});
+      },
+      () => {
+        console.log('Geolocation Error')
+      },
+    );
+  } else {
+    // Browser doesn't support Geolocation
+    console.log('Geolocation Error')
+  }
+}
+
+export const getAddressFromLocation = (coordinates, setAddress) => {
+  const geocoder = new google.maps.Geocoder();
+  geocoder
+    .geocode({ location: {lat: parseFloat(coordinates.lat), lng: parseFloat(coordinates.lon)} })
+    .then((response) => {
+      if (response.results[0]) {
+        const address = response.results[0].formatted_address;
+        //console.log(address)
+        setAddress(address);
+      } else {
+        console.log('Reverse geocode error')
+      }
+    })
+    .catch((e) => window.alert("Geocoder failed due to: " + e));
+}
