@@ -28,8 +28,10 @@ export const ReviewList = ({ selected }) => {
         };
       });
       setReviews(reviewList);
+    } else {
+      setReviews([]);
     }
-  }, [users, restroomReviews]);
+  }, [users, restroomReviews, selected]);
 
   const [form, setForm] = useState(false);
   const showForm = () => {
@@ -48,7 +50,7 @@ export const ReviewList = ({ selected }) => {
       ) : (
         <div>
           <div className="review-list-fix">
-            {reviews == null ? (
+            {reviews.length == 0 ? (
               <p>Select a store to see reviews</p>
             ) : (
               reviews.map((review, index) => (
