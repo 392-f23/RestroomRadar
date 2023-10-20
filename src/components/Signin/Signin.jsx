@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useAuth, useDbUpdate } from "../../utilities/firebase";
+import "./Signin.css";
 
 export const Signin = ({ cont }) => {
   const user = useAuth();
@@ -25,7 +26,7 @@ export const Signin = ({ cont }) => {
             <h1 style={{fontWeight: '700', fontSize: '3rem'}}>
                 RestroomRadar
             </h1>
-            <p style={{fontSize: '1rem', cursor: 'pointer'}} onClick={cont}>
+            <p style={{fontSize: '1rem', cursor: 'pointer'}} className="guest-text" onClick={cont}>
                 Continue as Guest
             </p>
         </div>

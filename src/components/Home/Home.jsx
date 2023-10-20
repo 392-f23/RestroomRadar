@@ -39,8 +39,6 @@ const Home = () => {
 
   const [restroomReviews, error] = useDbData(`/reviews`);
 
-  
-
   //getCurrLocation(setCoordinates);
   //console.log(coordinates);
 
@@ -112,7 +110,7 @@ const Home = () => {
       <BathroomHeader />
 
       <Modal open={open} close={closeModal}>
-        <ReviewList selected={selected} />
+        <ReviewList selected={selected} open={open} />
       </Modal>
 
       <Stack

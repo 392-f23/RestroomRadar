@@ -1,12 +1,13 @@
 import { Button } from "react-bootstrap";
 import "./ReviewList.css";
 import { Link } from "react-router-dom";
-import { useDbData } from "../../utilities/firebase";
+import { useDbData, useAuth } from "../../utilities/firebase";
 import { useEffect, useState } from "react";
 import { ReviewCard } from "../ReviewCard.jsx/ReviewCard";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
 
-export const ReviewList = ({ selected }) => {
+export const ReviewList = ({ selected, open }) => {
+  const [user] = useAuth();
   const [reviews, setReviews] = useState([]);
 
   const [restroomReviews, error] = useDbData(
@@ -31,7 +32,11 @@ export const ReviewList = ({ selected }) => {
     } else {
       setReviews([]);
     }
-  }, [users, restroomReviews, selected]);
+
+    if (!open) {
+      setForm(false);
+    }
+  }, [users, restroomReviews, selected, open]);
 
   const [form, setForm] = useState(false);
   const showForm = () => {
@@ -64,7 +69,7 @@ export const ReviewList = ({ selected }) => {
               ))
             )}
           </div>
-          <Button onClick={showForm}>Leave Review</Button>
+          {user ? <Button onClick={showForm}>Leave Review</Button> : <p>Sign in to leave a review</p>}
         </div>
       )}
     </div>
