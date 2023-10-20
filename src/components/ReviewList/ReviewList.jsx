@@ -47,16 +47,15 @@ export const ReviewList = ({ selected }) => {
         <ReviewForm showForm={showForm} restroomId={selected.id} />
       ) : (
         <div>
-          {reviews == null ? (
-            <p>Select a store to see reviews</p>
-          ) : (
-            reviews.map((review, index) => (
-              <div key={index} className="review-entry">
-                <p>"{review.review}"</p>
-                <p className="reviewer-name">- {review.username}</p>
-              </div>
-            ))
-          )}
+          <div className="review-list-fix">
+            {reviews == null ? (
+              <p>Select a store to see reviews</p>
+            ) : (
+              reviews.map((review, index) => (
+                <ReviewCard key={index} username={review.username} review={review.review} rating={review.rating} photo={review.photo}/>
+              ))
+            )}
+          </div>
           <Button onClick={showForm}>Leave Review</Button>
         </div>
       )}

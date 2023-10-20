@@ -10,3 +10,9 @@
 .reviews-div h2 {
     padding-bottom: 10px;
 }
+
+.review-list-fix {
+    height: 25rem;
+    overflow-y: scroll;
+    margin-bottom: 1rem;
+}
