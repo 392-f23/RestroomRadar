@@ -30,16 +30,3 @@ const App = () => {
 };
 
 export default App;
-
-{
-  /* <BrowserRouter>
-<Banner title={user || user2 ? "RestroomRadar" : ""} />
-<Routes>
-  <Route
-    path="/"
-    element={user || user2 ? <Home /> : <Signin cont={continueAsGuest} />}
-  />
-  <Route path="/review_form/:restroomId" element={<ReviewForm />} />
-</Routes>
-</BrowserRouter> */
-}

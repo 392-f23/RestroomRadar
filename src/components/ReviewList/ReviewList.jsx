@@ -54,7 +54,13 @@ export const ReviewList = ({ selected }) => {
               <p>Select a store to see reviews</p>
             ) : (
               reviews.map((review, index) => (
-                <ReviewCard key={index} username={review.username} review={review.review} rating={review.rating} photo={review.photo}/>
+                <ReviewCard
+                  key={index}
+                  username={review.username}
+                  review={review.review}
+                  rating={review.rating}
+                  photo={review.photo}
+                />
               ))
             )}
           </div>
@@ -64,17 +70,3 @@ export const ReviewList = ({ selected }) => {
     </div>
   );
 };
-
-// {selectedReview == null ? (
-//   <p>No reviews for this bathroom. Feel free to leave one!</p>
-// ) : (
-//   selectedReview.map((review, index) => (
-//     <div key={index} className="review-entry">
-//       <p>"{review.review}"</p>
-//       <p className="reviewer-name">- {review.username}</p>
-//     </div>
-//   ))
-// )}
-// <Link to={`/review_form/${selected ? selected.id : ""}`}>
-//   <Button>Leave Review</Button>
-// </Link>
