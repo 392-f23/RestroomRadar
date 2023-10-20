@@ -82,9 +82,6 @@ export const ReviewForm = ({ showForm, restroomId }) => {
           <Button className="btn mx-3 btn-danger" onClick={showForm}>
             Cancel
           </Button>
-          {/*<Link className='mx-3' to={"/"}>
-            <Button className="btn btn-danger">Cancel</Button>
-          </Link>*/}
         </div>
       </Form.Group>
     </Form>
