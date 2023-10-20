@@ -73,6 +73,23 @@ export const getCoordinateLocation = (queryLocation, setCoordinates) => {
   });
 };
 
+const getRating = (restrooms, restroomId) => {
+  if (restrooms) {
+    const restroomReviews = restrooms[restroomId];
+
+    if (!restroomReviews) {
+      return 0;
+    }
+
+    let ratingSum = 0;
+    for (const reviewId in restroomReviews) {
+      const review = restroomReviews[reviewId];
+      ratingSum = ratingSum + review.rating;
+    }
+    return ratingSum / Object.entries(restroomReviews).length;
+  }
+};
+
 export const getNearbyRestrooms = (
   queryCoordinates,
   setNearbyPlaces,
@@ -81,7 +98,7 @@ export const getNearbyRestrooms = (
   setSimpleAddress,
   coordinates,
   setAddress,
-  
+  restroomsFromFirebase
 ) => {
   //console.log(queryCoordinates);
 
@@ -121,8 +138,20 @@ export const getNearbyRestrooms = (
         });
         console.log(openStatus); */
         let types = results[i].types;
-        let primary_types = ["bakery","bar","cafe","campground","city_hall","convenience_store","department_store","gas_station","library","restaurant","university"];
-        for (let ii = 0; ii < primary_types.length; ii++ ) {
+        let primary_types = [
+          "bakery",
+          "bar",
+          "cafe",
+          "campground",
+          "city_hall",
+          "convenience_store",
+          "department_store",
+          "gas_station",
+          "library",
+          "restaurant",
+          "university",
+        ];
+        for (let ii = 0; ii < primary_types.length; ii++) {
           if (results[i].types.includes(primary_types[i])) {
             types = [primary_types[i]];
           }
@@ -137,7 +166,9 @@ export const getNearbyRestrooms = (
             queryCoordinates.lat,
             queryCoordinates.lon
           ).toFixed(2),
-          rating: results[i].rating,
+          rating: getRating(restroomsFromFirebase, results[i].place_id)
+            ? getRating(restroomsFromFirebase, results[i].place_id)
+            : 0,
           types: types,
           priceLevel: "Purchase required ($6)",
           operational: results[i].business_status,
@@ -146,7 +177,7 @@ export const getNearbyRestrooms = (
       //console.log(nearbyResults);
       setNearbyPlaces(nearbyResults);
       setRestroomData(nearbyResults);
-      getAddressFromLocation(coordinates,setAddress);
+      getAddressFromLocation(coordinates, setAddress);
       setSimpleAddress(address.split(","));
       //console.log(queryCoordinates);
       //console.log(requestNearby);
@@ -164,30 +195,35 @@ export const getCurrLocation = (setCoordinates) => {
           lng: position.coords.longitude,
         };
         //console.log(pos);
-        setCoordinates({lat: pos.lat,lon: pos.lng});
+        setCoordinates({ lat: pos.lat, lon: pos.lng });
       },
       () => {
-        console.log('Geolocation Error')
-      },
+        console.log("Geolocation Error");
+      }
     );
   } else {
     // Browser doesn't support Geolocation
-    console.log('Geolocation Error')
+    console.log("Geolocation Error");
   }
-}
+};
 
 export const getAddressFromLocation = (coordinates, setAddress) => {
   const geocoder = new google.maps.Geocoder();
   geocoder
-    .geocode({ location: {lat: parseFloat(coordinates.lat), lng: parseFloat(coordinates.lon)} })
+    .geocode({
+      location: {
+        lat: parseFloat(coordinates.lat),
+        lng: parseFloat(coordinates.lon),
+      },
+    })
     .then((response) => {
       if (response.results[0]) {
         const address = response.results[0].formatted_address;
         //console.log(address)
         setAddress(address);
       } else {
-        console.log('Reverse geocode error')
+        console.log("Reverse geocode error");
       }
     })
     .catch((e) => window.alert("Geocoder failed due to: " + e));
-}
+};

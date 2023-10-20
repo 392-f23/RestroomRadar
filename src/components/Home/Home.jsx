@@ -18,11 +18,15 @@ import {
 import Fab from "@mui/material/Fab";
 import { BiMapAlt } from "react-icons/bi";
 import PlacesAutocomplete from "../PlacesAutocomplete/PlacesAutocomplete";
-import { Hourglass } from 'react-loader-spinner';
+import { Hourglass } from "react-loader-spinner";
+import { useDbData } from "../../utilities/firebase";
 
 const Home = () => {
   const [restroomData, setRestroomData] = useState([]);
-  const [coordinates, setCoordinates] = useState({ lat: 37.3861, lon: 122.0839 });
+  const [coordinates, setCoordinates] = useState({
+    lat: 37.3861,
+    lon: 122.0839,
+  });
   const [address, setAddress] = useState("");
   const [mySimpleAddress, setMySimpleAddress] = useState([]);
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
@@ -33,9 +37,12 @@ const Home = () => {
   const openMapModal = () => setOpenMap(true);
   const closeMapModal = () => setOpenMap(false);
 
+  const [restroomReviews, error] = useDbData(`/reviews`);
+
+  
+
   //getCurrLocation(setCoordinates);
   //console.log(coordinates);
-
 
   // styling floating button: https://stackoverflow.com/questions/65691712/how-to-show-a-floating-action-button-always-in-bottom-of-screen
   const fabStyle = {
@@ -48,6 +55,7 @@ const Home = () => {
     backgroundColor: "blue",
   };
 
+
   const getSortedData = (data) => {
     setRestroomData(data);
   };
@@ -57,16 +65,28 @@ const Home = () => {
   };
 
   // // using useEffect on startup: https://www.w3schools.com/react/react_useeffect.asp
-   useEffect(() => {
-     getCurrLocation(setCoordinates);
-     getAddressFromLocation(coordinates, setAddress);
-     getCoordinateLocation(address, setCoordinates);
-     //console.log(address);
+  useEffect(() => {
+    getCurrLocation(setCoordinates);
+    getAddressFromLocation(coordinates, setAddress);
+    getCoordinateLocation(address, setCoordinates);
+    //console.log(address);
   }, []);
 
   // using useEffect to set state when coordinates change: https://daveceddia.com/useeffect-hook-examples/
   useEffect(() => {
-    getNearbyRestrooms(coordinates, setNearbyPlaces, setRestroomData, address, setMySimpleAddress, coordinates, setAddress);
+
+    const restroomsFromFirebase = restroomReviews;
+
+    getNearbyRestrooms(
+      coordinates,
+      setNearbyPlaces,
+      setRestroomData,
+      address,
+      setMySimpleAddress,
+      coordinates,
+      setAddress,
+      restroomsFromFirebase
+    );
     if (coordinates.lat != 37.3861 && coordinates.lon != 122.0839) {
       setIsLocLoad(false);
     }
@@ -78,7 +98,6 @@ const Home = () => {
 
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
-  
 
   // const insertRestroomIntoDatabase = (restroomData) => {
   //   for (const restroom of restroomData) {
@@ -101,8 +120,8 @@ const Home = () => {
         gap={3}
         className="justify-content-center my-3"
       >
-        <Sorter data={nearbyPlaces} getSortedData={getSortedData} />
-        <Filter data={nearbyPlaces} getFilteredData={getFilteredData} />
+        <Sorter data={restroomData} getSortedData={getSortedData} />
+        <Filter data={restroomData} getFilteredData={getFilteredData} />
       </Stack>
 
       <Modal open={openMap} close={closeMapModal}>
@@ -129,24 +148,31 @@ const Home = () => {
         </h1>
       </Fab>
 
-      <PlacesAutocomplete setCoordinates={setCoordinates} simpleAddress={mySimpleAddress} isLoaded={isLocLoad}/>
+      <PlacesAutocomplete
+        setCoordinates={setCoordinates}
+        simpleAddress={mySimpleAddress}
+        isLoaded={isLocLoad}
+      />
       <div>
-        {isLocLoad
-        ? <div className="center"><Hourglass type="Circles" color="#00BFFF" height={80} width={80}/><div>Loading closest restrooms...</div></div>
-        : <div className="restroom-cards">
-          {restroomData &&
-          restroomData.map((result) => (
-            <RestroomCard
-              key={result.id}
-              result={result}
-              openModal={openModal}
-              setSelected={setSelected}
-            />
-          ))}
+        {isLocLoad ? (
+          <div className="center">
+            <Hourglass type="Circles" color="#00BFFF" height={80} width={80} />
+            <div>Loading closest restrooms...</div>
+          </div>
+        ) : (
+          <div className="restroom-cards">
+            {restroomData &&
+              restroomData.map((result) => (
+                <RestroomCard
+                  key={result.id}
+                  result={result}
+                  openModal={openModal}
+                  setSelected={setSelected}
+                />
+              ))}
+          </div>
+        )}
       </div>
-      }
-      </div>
-      
     </div>
   );
 };
