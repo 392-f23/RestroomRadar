@@ -156,23 +156,27 @@ export const getNearbyRestrooms = (
             types = [primary_types[i]];
           }
         }
-        nearbyResults.push({
-          id: results[i].place_id,
-          name: results[i].name,
-          address: results[i].vicinity,
-          distance: getDistanceFromLatLonInKm(
-            results[i].geometry.viewport.mb.hi,
-            results[i].geometry.viewport.Oa.hi,
-            queryCoordinates.lat,
-            queryCoordinates.lon
-          ).toFixed(2),
-          rating: getRating(restroomsFromFirebase, results[i].place_id)
-            ? getRating(restroomsFromFirebase, results[i].place_id)
-            : 0,
-          types: types,
-          priceLevel: "Purchase required ($6)",
-          operational: results[i].business_status,
-        });
+        
+        if (types[0] != "locality") {
+          nearbyResults.push({
+            id: results[i].place_id,
+            name: results[i].name,
+            address: results[i].vicinity,
+            distance: getDistanceFromLatLonInKm(
+              results[i].geometry.viewport.mb.hi,
+              results[i].geometry.viewport.Oa.hi,
+              queryCoordinates.lat,
+              queryCoordinates.lon
+            ).toFixed(2),
+            rating: getRating(restroomsFromFirebase, results[i].place_id)
+              ? getRating(restroomsFromFirebase, results[i].place_id)
+              : 0,
+            types: types,
+            priceLevel: "Purchase required ($6)",
+            operational: results[i].business_status,
+          });
+        }
+
       }
       //console.log(nearbyResults);
       setNearbyPlaces(nearbyResults);
