@@ -60,6 +60,7 @@ const Home = () => {
 
   const getFilteredData = (data) => {
     setRestroomData(data);
+    console.log(data)
   };
 
   // // using useEffect on startup: https://www.w3schools.com/react/react_useeffect.asp
