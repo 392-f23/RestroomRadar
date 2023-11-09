@@ -20,13 +20,14 @@ export const Sorter = ({ data, getSortedData }) => {
         style={{background: 'linear-gradient(#007bff, #66d9ef)', border: 'none'}}
         id="dropdown-basic"
         size="md"
+        aria-label="sort"
       >
         Sort by {selectedSortValue == "none" ? "" : selectedSortValue}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
         {["none", "distance", "rating"].map((x) => (
-          <Dropdown.Item key={x} onClick={() => setSelectedSortValue(x)}>
+          <Dropdown.Item aria-label={x} key={x} onClick={() => setSelectedSortValue(x)}>
             {x}
           </Dropdown.Item>
         ))}

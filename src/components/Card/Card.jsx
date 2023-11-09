@@ -29,7 +29,7 @@ function RestroomCard({ result, openModal, setSelected }) {
   };
 
   return (
-    <Card style={{ width: "18rem", marginBottom: "1rem" }}>
+    <Card aria-label="card" style={{ width: "18rem", marginBottom: "1rem" }}>
       <Card.Body>
         <Card.Title>
           <p>{name}</p>

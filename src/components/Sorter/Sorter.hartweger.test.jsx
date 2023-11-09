@@ -1,10 +1,12 @@
 import {describe, it, vi} from 'vitest';
 import {render, screen} from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event'
 import { useState, useEffect } from "react";
-import Sorter from "./Sorter.jsx";
+import { Sorter } from "./Sorter.jsx";
+import RestroomCard from "../Card/Card";
 
 describe('sorting by distance should sort restroom results', () => {
-  it('should sort the restrooms in ascending order of distance', () => {
+  it('should sort the restrooms in ascending order of distance', async () => {
     var data = [
         {
             "id": "ChIJNTSZLwnQD4gR1wMmC0JyWaE",
@@ -50,20 +52,47 @@ describe('sorting by distance should sort restroom results', () => {
         }
     ]
 
-    //https://stackoverflow.com/questions/75968559/cannot-read-properties-of-null-reading-usestate-typeerror-cannot-read-prope
-    const contained = () => {
+    // reason for putting in container: https://testing-library.com/docs/ecosystem-user-event/https://stackoverflow.com/questions/75968559/cannot-read-properties-of-null-reading-usestate-typeerror-cannot-read-prope
+    const Contained = ({ data }) => {
         const [dataInput, modifyDataInput] = useState([]);
-        modifyDataInput(data);
-        console.log(dataInput);
-        render(<Sorter data={dataInput} getSortedData={modifyDataInput}/>)
-        screen.getByText("Sort By")
-        screen.getByText('Distax');
-
+        const [selected, setSelected] = useState();
+        const openModal = () => setOpen(true);
+        //modifyDataInput(data);
         return (
-            <div></div>
-        )
+            <div>
+                <Sorter data={data} getSortedData={modifyDataInput}/>
+                <div>
+                    {dataInput &&
+                    dataInput.map((result) => (
+                        <RestroomCard
+                            key={result.id}
+                            result={result}
+                            openModal={openModal}
+                            setSelected={setSelected}
+                        />
+                    ))}
+            </div>
+          </div>
+        );
     }
 
-    contained();
+    // query docs: https://testing-library.com/docs/queries/
+    render(<Contained data={data}/>)
+    // click docs: https://testing-library.com/docs/ecosystem-user-event/
+    await userEvent.click(screen.getByLabelText("sort"));
+    //console.log(screen.getByLabelText("distance"))
+    await userEvent.click(screen.getByLabelText("distance"));
+    const restroomCards = await screen.findAllByLabelText("card");
+    //console.log(restroomCards[0].textContent)
+    // expect docs: https://vitest.dev/api/expect.html
+    for (var i = 0; i < 3; i++) {
+        if (i == 0) {
+            expect(restroomCards[i].textContent).to.includes("0.15");
+        } else if (i == 1) {
+            expect(restroomCards[i].textContent).to.includes("0.46");
+        } else if (i == 2) {
+            expect(restroomCards[i].textContent).to.includes("0.47");
+        }
+    }
   });
 });
