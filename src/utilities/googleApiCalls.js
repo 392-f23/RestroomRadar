@@ -63,7 +63,7 @@ export const getCoordinateLocation = (queryLocation, setCoordinates) => {
   placesService.findPlaceFromQuery(requestLocation, function (results, status) {
     if (status === window.google.maps.places.PlacesServiceStatus.OK) {
       for (var i = 0; i < results.length; i++) {
-        //console.log(results[i]);
+        console.log("hey", results[i]);
         let lon = results[i].geometry.viewport.Oa.hi;
         let lat = results[i].geometry.viewport.mb.hi;
         setCoordinates({ lat, lon });
@@ -156,7 +156,7 @@ export const getNearbyRestrooms = (
             types = [primary_types[i]];
           }
         }
-        
+
         if (types[0] != "locality") {
           nearbyResults.push({
             id: results[i].place_id,
@@ -176,7 +176,6 @@ export const getNearbyRestrooms = (
             operational: results[i].business_status,
           });
         }
-
       }
       //console.log(nearbyResults);
       setNearbyPlaces(nearbyResults);
