@@ -64,8 +64,8 @@ export const getCoordinateLocation = (queryLocation, setCoordinates) => {
     if (status === window.google.maps.places.PlacesServiceStatus.OK) {
       for (var i = 0; i < results.length; i++) {
         console.log("hey", results[i]);
-        let lon = results[i].geometry.viewport.Oa.hi;
-        let lat = results[i].geometry.viewport.mb.hi;
+        let lon = results[i].geometry.location.lon;
+        let lat = results[i].geometry.location.lat;
         setCoordinates({ lat, lon });
         //console.log({lat,lon});
       }
@@ -156,6 +156,7 @@ export const getNearbyRestrooms = (
             types = [primary_types[i]];
           }
         }
+        console.log(results[i])
 
         if (types[0] != "locality") {
           nearbyResults.push({
@@ -163,8 +164,8 @@ export const getNearbyRestrooms = (
             name: results[i].name,
             address: results[i].vicinity,
             distance: getDistanceFromLatLonInKm(
-              results[i].geometry.viewport.mb.hi,
-              results[i].geometry.viewport.Oa.hi,
+              results[i].geometry.lon,
+              results[i].geometry.lat,
               queryCoordinates.lat,
               queryCoordinates.lon
             ).toFixed(2),
