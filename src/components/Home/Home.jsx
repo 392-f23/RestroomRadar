@@ -125,6 +125,7 @@ const Home = () => {
 
       <Modal open={openMap} close={closeMapModal}>
         <div
+          role={"map"}
           id="map"
           style={{
             width: "auto",
@@ -141,6 +142,7 @@ const Home = () => {
         sx={Fab.sx}
         aria-label={Fab.label}
         className="fab"
+        role={"map-button"}
       >
         <h1>
           <BiMapAlt color="white" />
